@@ -1,10 +1,10 @@
 import Image from "next/image";
 import {Button, ButtonGroup} from "@nextui-org/react";
-import {HeaderT} from "@/app/componets/header";
+import {Header} from "@/app/componets/header";
 export default function Home() {
   return (
         <div>
-            <HeaderT />
+            <Header routeType={0} />
             <Button color="primary">
                 Button
             </Button>

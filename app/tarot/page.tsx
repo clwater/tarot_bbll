@@ -1,13 +1,15 @@
-import {HeaderT} from "@/app/componets/header";
-import React from "react";
-export default function Tarot() {
+'use client'
 
+import {Header} from "@/app/componets/header";
+import React from "react";
+
+export default function Tarot() {
     const array = Array(20).fill(undefined)
 
 
     return (
         <div>
-            <HeaderT />
+            <Header routeType={2} />
             <div>
                 <ul>
                     {array.map((_, index) => (

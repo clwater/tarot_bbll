@@ -1,39 +1,36 @@
+'use client'
+
+
 import React from "react";
 import {Navbar, NavbarBrand, NavbarContent, NavbarItem, Link, Button} from "@nextui-org/react";
 import {AcmeLogo} from "@/app/componets/AcmeLogo";
+import {useParams} from "next/navigation";
 
-export const HeaderT = () => {
+export const Header = ({routeType= 0}) => {
+
+
+
     return (
-        <Navbar>
+        <Navbar shouldHideOnScroll isBordered>
             <NavbarBrand>
-                <AcmeLogo />
-                <p className="font-bold text-inherit">ACME</p>
+                <AcmeLogo/>
+                <Link color="foreground" href="/">
+                    <p className="font-bold text-inherit">包包和蓝蓝</p>
+                </Link>
+
             </NavbarBrand>
-            <NavbarContent className="hidden sm:flex gap-4" justify="center">
-                <NavbarItem>
-                    <Link color="foreground" href="#">
-                        Features
-                    </Link>
-                </NavbarItem>
-                <NavbarItem isActive>
-                    <Link href="#" aria-current="page">
-                        Customers
-                    </Link>
-                </NavbarItem>
-                <NavbarItem>
-                    <Link color="foreground" href="#">
-                        Integrations
-                    </Link>
-                </NavbarItem>
-            </NavbarContent>
+
             <NavbarContent justify="end">
-                <NavbarItem className="hidden lg:flex">
-                    <Link href="#">Login</Link>
+                <NavbarItem isActive={routeType === 1}>
+                    <Link color="foreground" href="divine">
+                        Divine
+                    </Link>
                 </NavbarItem>
-                <NavbarItem>
-                    <Button as={Link} color="primary" href="tarot" variant="flat">
-                        Sign Up
-                    </Button>
+
+                <NavbarItem isActive={routeType === 2}>
+                    <Link color="foreground" href="tarot">
+                        Tarot
+                    </Link>
                 </NavbarItem>
             </NavbarContent>
         </Navbar>
