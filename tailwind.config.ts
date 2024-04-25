@@ -21,12 +21,10 @@ const config: Config = {
             themes: {
                 light: {
                     colors: {
-                        primary: "#9353d3",
                     }
                 },
                 dark: {
                     colors: {
-                        primary: "#9353d3",
                     }
                 },
             },
