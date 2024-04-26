@@ -22,13 +22,13 @@ export const Header = ({routeType= 0}) => {
 
             <NavbarContent justify="end">
                 <NavbarItem isActive={routeType === 1}>
-                    <Link color="foreground" href="divine">
+                    <Link color="foreground" href="/divine">
                         Divine
                     </Link>
                 </NavbarItem>
 
                 <NavbarItem isActive={routeType === 2}>
-                    <Link color="foreground" href="tarot">
+                    <Link color="foreground" href="/tarot">
                         Tarot
                     </Link>
                 </NavbarItem>
