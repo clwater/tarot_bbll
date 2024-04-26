@@ -14,7 +14,7 @@ let map: Map<number, CardEntity> = new Map();
 
 export async function init(){
     if (cards.length > 0) return;
-    file = await fs.readFile(process.cwd() + '/data/card_data.json', 'utf8');
+    file = await fs.readFile(process.cwd() + '/app/data/card_data.json', 'utf8');
     data = JSON.parse(file);
     cards = data.cards;
 
