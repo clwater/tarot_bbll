@@ -1,4 +1,4 @@
-import React from "react";
+import React, {Suspense} from "react";
 
 import {Header} from "@/app/componets/header";
 import {CardItem} from "@/app/componets/CardItem";
@@ -20,7 +20,9 @@ export default async function Tarot() {
             <div className="grid grid-cols-4 gap-4 px-4">
                 {
                     major.map((card: CardEntity, index: number) => (
-                        <CardItem card={card}/>
+                        <div key={card.id}>
+                            <CardItem card={card}/>
+                        </div>
                     ))
                 }
             </div>
@@ -29,7 +31,9 @@ export default async function Tarot() {
             <div className="grid grid-cols-4 gap-4 px-4">
                 {
                     wands.map((card: CardEntity, index: number) => (
-                        <CardItem card={card}/>
+                        <div key={card.id}>
+                            <CardItem card={card}/>
+                        </div>
                     ))
                 }
             </div>
@@ -38,7 +42,9 @@ export default async function Tarot() {
             <div className="grid grid-cols-4 gap-4 px-4">
                 {
                     pentacles.map((card: CardEntity, index: number) => (
-                        <CardItem card={card}/>
+                        <div key={card.id}>
+                            <CardItem card={card}/>
+                        </div>
                     ))
                 }
             </div>
@@ -47,7 +53,9 @@ export default async function Tarot() {
             <div className="grid grid-cols-4 gap-4 px-4">
                 {
                     cups.map((card: CardEntity, index: number) => (
-                        <CardItem card={card}/>
+                        <div key={card.id}>
+                            <CardItem card={card}/>
+                        </div>
                     ))
                 }
             </div>
@@ -56,11 +64,12 @@ export default async function Tarot() {
             <div className="grid grid-cols-4 gap-4 px-4">
                 {
                     swords.map((card: CardEntity, index: number) => (
-                        <CardItem card={card}/>
+                        <div key={card.id}>
+                            <CardItem card={card}/>
+                        </div>
                     ))
                 }
             </div>
         </div>
-
     );
 }

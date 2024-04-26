@@ -1,24 +1,14 @@
 'use client';
-import React from "react";
+import React, {Suspense} from "react";
 
-import {Header} from "@/app/componets/header";
-import {usePathname, useSearchParams} from "next/navigation";
-
-let TarotManager = require('@/app/utils/TarotManager');
+import {TarotItem} from "@/app/componets/TarotItem";
 
 
-export default async function Tarot() {
-    const searchParams = useSearchParams()
-
-    let id = searchParams.get('id');
-    if (!id) return id = '0';
-    const card = await TarotManager.getTarotData(parseInt(id));
+export default function TarotParent() {
     return (
-        <div>
-            <Header routeType={2}/>
-            {id}
-            {card.name}
-            {card.image}
-        </div>
+        // You could have a loading skeleton as the `fallback` too
+        <Suspense>
+            <TarotItem />
+        </Suspense>
     )
 }
