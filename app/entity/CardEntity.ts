@@ -1,4 +1,4 @@
-interface Card {
+interface CardEntity {
     type: string;
     name_short: string;
     name: string;
