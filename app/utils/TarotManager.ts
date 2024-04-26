@@ -10,12 +10,17 @@ let wands: CardEntity[] = [];
 let pentacles: CardEntity[] = [];
 let cups: CardEntity[] = [];
 let swords: CardEntity[] = [];
+let map: Map<number, CardEntity> = new Map();
 
 export async function init(){
     if (cards.length > 0) return;
     file = await fs.readFile(process.cwd() + '/data/card_data.json', 'utf8');
     data = JSON.parse(file);
     cards = data.cards;
+
+    cards.map((card: CardEntity) => {
+        map.set(card.id, card);
+    })
 
     majors = cards.filter(card => card.type === "major");
     minors = cards.filter(card => card.type === "minor");
@@ -25,10 +30,12 @@ export async function init(){
     swords = cards.filter(card => card.suit === "swords");
 }
 
-export async function getTarotData() {
+export async function getTarotData(id: number) {
     await init();
-    return cards;
+    return map.get(id);
 }
+
+
 
 export async function getTarotDataMajor() {
     await init();

@@ -10,11 +10,15 @@ let TarotManager = require('@/app/utils/TarotManager');
 export default async function Tarot() {
     const searchParams = useSearchParams()
 
-    const id = searchParams.get('id')
+    let id = searchParams.get('id');
+    if (!id) return id = '0';
+    const card = await TarotManager.getTarotData(parseInt(id));
     return (
         <div>
             <Header routeType={2}/>
             {id}
+            {card.name}
+            {card.image}
         </div>
     )
 }

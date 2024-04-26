@@ -3,7 +3,7 @@ import {Card, CardHeader, CardBody, Image, Link} from "@nextui-org/react";
 import {CardFooter} from "@nextui-org/card";
 
 export const CardItem = ({card}: {card:CardEntity}) =>{
-    const url = `/tarot/item?id=${card.name}`;
+    const url = `/tarot/item?id=${card.id}`;
     return (
 
         <Link href={url} key={card.id}>
