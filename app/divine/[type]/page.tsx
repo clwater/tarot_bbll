@@ -1,12 +1,12 @@
 import {Header} from "@/app/componets/header";
 import React from "react";
 import {TarotItem} from "@/app/componets/TarotItem";
-import {DivineItem} from "@/app/componets/DivineItem";
+import {DivineParent} from "@/app/componets/DivineParent";
 export default function Divine({ params }: { params: { type: string } }) {
     return (<div>
         <Header routeType={1}/>
 
-        <DivineItem type={params.type}/>
+        <DivineParent type={params.type}/>
     </div>)
 }
 

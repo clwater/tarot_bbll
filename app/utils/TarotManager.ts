@@ -31,6 +31,7 @@ export async function init(){
 }
 
 export async function getTarotData(id: number) {
+    console.log("getTarotData ", id)
     await init();
     return map.get(id);
 }

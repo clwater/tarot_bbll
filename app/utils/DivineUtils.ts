@@ -31,7 +31,6 @@ const type_1 = [
 
 export  function get(type: string){
 
-    console.log("search: " + type)
     let matrix = type_0
     switch (type){
         case '0' : matrix = type_0; break

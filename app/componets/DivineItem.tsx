@@ -1,44 +1,27 @@
-'use client';
 import React from "react";
 
-import {Table, TableHeader, TableColumn, TableBody, TableRow, TableCell} from "@nextui-org/react";
-import {CardItem} from "@/app/componets/CardItem";
+
+let TarotManager = require('@/app/utils/TarotManager');
 
 
-let DivineUtils = require('@/app/utils/DivineUtils');
-
-
-export const DivineItem = ({type = '0'}) =>{
-    const matrix = DivineUtils.get(type)
-    console.log(matrix)
+export async function DivineItem({cardId = 0}) {
+    if (cardId == 0) {
+        return <div></div>
+    }
+    const card = await TarotManager.getTarotData(cardId)
+    console.log(cardId)
+    console.log(card.name)
 
     return (
-        <div>
-            <Table hideHeader aria-label="Tarot">
-                <TableHeader>
-                    {
-                        matrix[0].map( (index: number) => (
-                            <TableColumn>index</TableColumn>
-                        ))
-                    }
-                </TableHeader>
-                <TableBody>
-                    {
-                        matrix.map((line: number[], y: number) => (
-                            <TableRow key={y}>
-                                {
-                                    line.map( (x: number) => (
-                                        <TableCell>{
-                                            matrix[x][y]
-                                        }</TableCell>
-                                    ))
-                                }
-                            </TableRow>
-                        ))
-                    }
-                </TableBody>
-            </Table>
-        </div>
+        <div className="text-white">
+            {
+                <div>
+                    <img src={card.image} alt={card.name}/>
+                    <br/>
+                    {card.name}
+                </div>
+            }
 
+        </div>
     )
 }
