@@ -8,9 +8,35 @@ import {DivineItem} from "@/app/componets/DivineItem";
 let DivineUtils = require('@/app/utils/DivineUtils');
 
 
-export const DivineParent = ({type = '0'}) =>{
+
+
+export const DivineParent = ({type = '0'}) => {
     const matrix = DivineUtils.get(type)
     console.log(matrix)
+
+    matrix.map((row: number[], rowIndex: number) => {
+            row.map((element, columnIndex) => {
+                if (element === 0) return
+                matrix[rowIndex][columnIndex] = Math.floor(Math.random() * 78) + 1
+            })
+        }
+    )
+
+    console.log(matrix)
+
+    function updateMatrix() {
+        console.log(matrix)
+
+        matrix.map((row: number[], rowIndex: number) => {
+                row.map((element, columnIndex) => {
+                    if (element === 0) return
+                    matrix[rowIndex][columnIndex] = Math.floor(Math.random() * 78) + 1
+                })
+            }
+        )
+
+        console.log(matrix)
+    }
 
 
     return (
@@ -19,7 +45,7 @@ export const DivineParent = ({type = '0'}) =>{
             <Table hideHeader aria-label="Tarot">
                 <TableHeader>
                     {
-                        matrix[0].map( (index: number) => (
+                        matrix[0].map((index: number) => (
                             <TableColumn key={index}>index</TableColumn>
                         ))
                     }
@@ -30,7 +56,7 @@ export const DivineParent = ({type = '0'}) =>{
                             <TableRow key={rowIndex}>
                                 {row.map((element, columnIndex) => (
                                     <TableCell key={row.length * 10 + rowIndex}>
-                                        <DivineItem  cardId={element}/>
+                                        <DivineItem cardId={element}/>
                                     </TableCell>
                                 ))}
                             </TableRow>
@@ -39,7 +65,11 @@ export const DivineParent = ({type = '0'}) =>{
                 </TableBody>
 
             </Table>
-            <Button>onCreate</Button>
+            <Button
+                // onClick={updateMatrix()}
+            >
+                onCreate
+            </Button>
         </div>
 
     )
