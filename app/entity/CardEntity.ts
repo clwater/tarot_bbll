@@ -1,4 +1,5 @@
 interface CardEntity {
+    id: number;
     type: string;
     name_short: string;
     name: string;

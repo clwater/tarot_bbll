@@ -6,7 +6,7 @@ export const CardItem = ({card}: {card:CardEntity}) =>{
     const url = `/tarot/item?id=${card.name}`;
     return (
 
-        <Link href={url}>
+        <Link href={url} key={card.id}>
             <Card>
                 <CardBody>
                     <Image
