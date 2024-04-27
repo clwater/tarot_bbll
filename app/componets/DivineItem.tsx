@@ -9,8 +9,8 @@ export async function DivineItem({cardId = 0}) {
         return <div></div>
     }
     const card = await TarotManager.getTarotData(cardId)
-    console.log(cardId)
-    console.log(card.name)
+    
+    
 
     return (
         <div className="text-white">

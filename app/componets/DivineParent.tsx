@@ -13,7 +13,7 @@ let DivineUtils = require('@/app/utils/DivineUtils');
 export const DivineParent = ({type = '0'}) => {
     const matrixItem: CardArrayItem = DivineUtils.get(type)
     const matrix = matrixItem.matrix
-    console.log(matrixItem)
+    
 
     matrix.map((row: number[], rowIndex: number) => {
             row.map((element, columnIndex) => {
@@ -23,10 +23,10 @@ export const DivineParent = ({type = '0'}) => {
         }
     )
 
-    console.log(matrix)
+    
 
     function updateMatrix() {
-        console.log(matrix)
+        
 
         matrix.map((row: number[], rowIndex: number) => {
                 row.map((element, columnIndex) => {
@@ -36,7 +36,7 @@ export const DivineParent = ({type = '0'}) => {
             }
         )
 
-        console.log(matrixItem)
+        
     }
 
 
