@@ -30,7 +30,8 @@ export const CardItem = ({card}: { card: CardArrayItem }) => {
                 }
             </CardBody>
             <CardFooter className="content-center">
-                <small>{card.name}</small> <Button as={Link} href={"/divine/" + card.id} className="">开始</Button>
+                {/*<small>{card.name}</small> <Button as={Link} href={"/divine/" + card.id} className="">开始</Button>*/}
+                <small>{card.name}</small> <Button as={Link} href={"/divine/item?id=" + card.id} className="">开始</Button>
             </CardFooter>
         </Card>
     )

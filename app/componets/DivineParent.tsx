@@ -10,8 +10,8 @@ let DivineUtils = require('@/app/utils/DivineUtils');
 
 
 
-export const DivineParent = ({type = '0'}) => {
-    const matrixItem: CardArrayItem = DivineUtils.get(type)
+export const DivineParent = ({type: id = '0'}) => {
+    const matrixItem: CardArrayItem = DivineUtils.get(id)
     const matrix = matrixItem.matrix
     
 
