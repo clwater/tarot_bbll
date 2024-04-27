@@ -8,14 +8,14 @@ import {DivineParent} from "@/app/componets/DivineParent";
 export default function Divine() {
 
     const searchParams = useSearchParams();
-    let cardId = searchParams.get('id')
-    if (cardId === null) {
-        cardId = '0'
+    let cardArrayId = searchParams.get('id')
+    if (cardArrayId === null) {
+        cardArrayId = '0'
     }
 
     return (<div>
         <Header routeType={1}/>
-        <DivineParent type={cardId}/>
+        <DivineParent type={cardArrayId}/>
     </div>)
 }
 
