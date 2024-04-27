@@ -100,7 +100,7 @@ const cardMatrixs = [
 ]
 
 export function get(_index: string) {
-    const index = parseInt(_index)
+    const index = parseInt(_index) - 1
     return cardMatrixs[index]
 }
 

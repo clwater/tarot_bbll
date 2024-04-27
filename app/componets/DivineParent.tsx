@@ -11,8 +11,9 @@ let DivineUtils = require('@/app/utils/DivineUtils');
 
 
 export const DivineParent = ({type = '0'}) => {
-    const matrix = DivineUtils.get(type)
-    console.log(matrix)
+    const matrixItem: CardArrayItem = DivineUtils.get(type)
+    const matrix = matrixItem.matrix
+    console.log(matrixItem)
 
     matrix.map((row: number[], rowIndex: number) => {
             row.map((element, columnIndex) => {
@@ -35,7 +36,7 @@ export const DivineParent = ({type = '0'}) => {
             }
         )
 
-        console.log(matrix)
+        console.log(matrixItem)
     }
 
 
