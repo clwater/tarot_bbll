@@ -1,7 +1,7 @@
 // import {useRouter, useSearchParams} from "next/navigation";
 import React from "react";
-import {Image} from "@nextui-org/react";
-import commonBack from '../assets/image/common_back.png'
+import {Image, Textarea} from "@nextui-org/react";
+import commonBack from '../assets/image/common_back.jpg'
 import {Chip} from "@nextui-org/chip";
 
 
@@ -21,10 +21,11 @@ export function TarotItem({id = '1'}) {
 
     return (
         <div
-            className="bg-scroll h-full w-full items-center justify-center text-white/90 "
+            className="bg-opacity-75 text-white/90 bg-scroll hover:bg-fixed bg-cover bg-center w-full items-center justify-center min-h-1000 backdrop-blur-lg "
             style={{
                 backgroundImage: `url(${commonBack.src})`,
             }}
+
         >
             <div
                 style={{
@@ -53,18 +54,37 @@ export function TarotItem({id = '1'}) {
 
                 <br/>
                 <br/>
-                <b>Mean up:</b>
-                <br/>
-                {card.meaning_up}
-                <br/>
-                <b>Mean rev:</b>
-                <br/>
-                {card.meaning_rev}
-                <br/>
-                <br/>
-                <b>Desc:</b>
-                <br/>
-                <small>{card.desc}</small>
+
+                <Textarea
+                    isReadOnly
+                    label={<b>Mean up:</b>}
+                    variant="bordered"
+                    labelPlacement="outside"
+                    placeholder=""
+                    defaultValue={card.meaning_up}
+                    className="w-full"
+                />
+
+                <Textarea
+                    isReadOnly
+                    label={<b>Mean rev:</b>}
+                    variant="bordered"
+                    labelPlacement="outside"
+                    placeholder=""
+                    defaultValue={card.meaning_rev}
+                    className="w-full"
+                />
+
+                <Textarea
+                    isReadOnly
+                    label={<b>Desc:</b>}
+                    variant="bordered"
+                    labelPlacement="outside"
+                    placeholder=""
+                    defaultValue={card.desc}
+                    className="w-full"
+                />
+
 
             </div>
         </div>

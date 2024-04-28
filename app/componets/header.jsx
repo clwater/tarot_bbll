@@ -11,7 +11,7 @@ export const Header = ({routeType= 0}) => {
 
 
     return (
-        <Navbar shouldHideOnScroll isBordered>
+        <Navbar isBordered>
             <NavbarBrand>
                 <AcmeLogo/>
                 <Link color="foreground" href="/">

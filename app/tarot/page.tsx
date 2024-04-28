@@ -5,7 +5,7 @@ import React, {Suspense} from "react";
 import {Header} from "@/app/componets/header";
 import {CardItem} from "@/app/componets/CardItem";
 import {Accordion, AccordionItem} from "@nextui-org/react";
-import commonBack from "@/app/assets/image/common_back.png";
+import commonBack from "@/app/assets/image/common_back.jpg";
 let TarotManager = require('@/app/utils/TarotManager');
 
 
