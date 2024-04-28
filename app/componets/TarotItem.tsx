@@ -4,9 +4,9 @@ import {Card, CardBody, CardHeader, Image} from "@nextui-org/react";
 
 let TarotManager = require('@/app/utils/TarotManager');
 
-export async function TarotItem({id = '1'}) {
+export function TarotItem({id = '1'}) {
     
-    const card = await TarotManager.getTarotData(parseInt(id));
+    const card = TarotManager.getTarotData(parseInt(id));
     return (
         <Card>
             <CardHeader>{card.name}</CardHeader>

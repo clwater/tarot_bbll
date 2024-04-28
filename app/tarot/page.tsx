@@ -6,12 +6,12 @@ import {CardItem} from "@/app/componets/CardItem";
 let TarotManager = require('@/app/utils/TarotManager');
 
 
-export default async function Tarot() {
-    const major = await TarotManager.getTarotDataMajor();
-    const wands = await TarotManager.getTarotDataMinors("wands");
-    const pentacles = await TarotManager.getTarotDataMinors("pentacles");
-    const cups = await TarotManager.getTarotDataMinors("cups");
-    const swords = await TarotManager.getTarotDataMinors("swords");
+export default function Tarot() {
+    const major = TarotManager.getTarotDataMajor();
+    const wands = TarotManager.getTarotDataMinors("wands");
+    const pentacles = TarotManager.getTarotDataMinors("pentacles");
+    const cups = TarotManager.getTarotDataMinors("cups");
+    const swords = TarotManager.getTarotDataMinors("swords");
     return (
         <div>
             <Header routeType={2}/>

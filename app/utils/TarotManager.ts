@@ -1,5 +1,5 @@
-import {promises as fs} from "fs";
-import exp from "node:constants";
+import fs from 'fs';
+import path from 'path';
 
 let file;
 let data;
@@ -12,10 +12,17 @@ let cups: CardEntity[] = [];
 let swords: CardEntity[] = [];
 let map: Map<number, CardEntity> = new Map();
 
-export async function init(){
+export function init(){
     if (cards.length > 0) return;
-    file = await fs.readFile(process.cwd() + '/app/data/card_data.json', 'utf8');
-    data = JSON.parse(file);
+    // file = await fs.readFile(process.cwd() + '/app/data/card_data.json', 'utf8');
+    // data = JSON.parse(file);
+    // cards = data.cards;
+
+
+    let usersPath = path.join(process.cwd(), '/app/data/card_data.json');
+    let file = fs.readFileSync(usersPath);
+    // console.log(file.toString());
+    data = JSON.parse(file.toString());
     cards = data.cards;
 
     cards.map((card: CardEntity) => {
@@ -30,22 +37,21 @@ export async function init(){
     swords = cards.filter(card => card.suit === "swords");
 }
 
-export async function getTarotData(id: number) {
-    
-    await init();
+export function getTarotData(id: number) {
+    init();
     return map.get(id);
 }
 
 
 
-export async function getTarotDataMajor() {
-    await init();
+export function getTarotDataMajor() {
+    init();
 
     return majors
 }
 
-export async function getTarotDataMinors(suit: string) {
-    await init();
+export function getTarotDataMinors(suit: string) {
+    init();
 
     switch (suit) {
         case "wands":

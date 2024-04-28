@@ -4,11 +4,11 @@ import React from "react";
 let TarotManager = require('@/app/utils/TarotManager');
 
 
-export async function DivineItem({cardId = 0}) {
+export function DivineItem({cardId = 0}) {
     if (cardId == 0) {
         return <div></div>
     }
-    const card = await TarotManager.getTarotData(cardId)
+    const card = TarotManager.getTarotData(cardId)
     
     
 
