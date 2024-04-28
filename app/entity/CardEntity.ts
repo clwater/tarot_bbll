@@ -9,5 +9,6 @@ interface CardEntity {
     meaning_rev: string;
     desc: string;
     image:string;
-    suit: String
+    image_small:string;
+    suit: String;
 }
