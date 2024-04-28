@@ -2,7 +2,7 @@ import React from "react";
 import {Card, CardHeader, CardBody, Image, Link, Button} from "@nextui-org/react";
 import {CardFooter} from "@nextui-org/card";
 
-import imageBack from '../assets/image/back.jpg'
+import imageBack from '../assets/image/card_back.jpg'
 
 export const CardItem = ({card}: { card: CardArrayItem }) => {
     return (

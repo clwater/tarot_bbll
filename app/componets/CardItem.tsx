@@ -1,5 +1,5 @@
 import React from "react";
-import {Card, CardHeader, CardBody, Image, Link} from "@nextui-org/react";
+import {Card, CardHeader, CardBody, Image, Link, Button} from "@nextui-org/react";
 import {CardFooter} from "@nextui-org/card";
 
 export const CardItem = ({card}: {card:CardEntity}) =>{
