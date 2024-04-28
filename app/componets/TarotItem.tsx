@@ -32,7 +32,6 @@ export function TarotItem({id = '1'}) {
                     justifyContent: "center",
                 }}
             >
-                {/*<Image src="/image.png" width="100" height="1000" />*/}
                 <Image
                     alt="Woman listing to music"
                     className="object-cover"
