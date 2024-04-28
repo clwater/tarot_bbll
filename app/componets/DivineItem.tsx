@@ -8,15 +8,23 @@ export function DivineItem({cardId = 0}) {
     if (cardId == 0) {
         return <div></div>
     }
-    const card = TarotManager.getTarotData(cardId)
-    
+
+    let card = TarotManager.getTarotData(cardId)
+    const isRev = cardId < 0
+    card = isRev ? TarotManager.getTarotData(-1 * cardId) : card
     
 
     return (
         <div className="text-white">
             {
                 <div>
-                    <img src={card.image} alt={card.name}/>
+                    {
+                        isRev ?
+                            <img className="rotate-180" src={card.image} alt={card.name}/>
+                            :
+                            <img src={card.image} alt={card.name}/>
+
+                    }
                     <br/>
                     {card.name}
                 </div>
