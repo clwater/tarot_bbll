@@ -1,21 +1,31 @@
 'use client'
 
 import {Header} from "@/app/componets/header";
-import React from "react";
+import React, {Suspense} from "react";
 import {useSearchParams} from "next/navigation";
 import {DivineParent} from "@/app/componets/DivineParent";
 
-export default function Divine() {
-
+function Item() {
     const searchParams = useSearchParams();
     let cardArrayId = searchParams.get('id')
     if (cardArrayId === null) {
         cardArrayId = '0'
     }
 
-    return (<div>
-        <Header routeType={1}/>
-        <DivineParent type={cardArrayId}/>
-    </div>)
+    return <DivineParent type={cardArrayId}/>
+}
+
+export default function Divine() {
+
+
+    return (
+        <div>
+            <Header routeType={1}/>
+            <Suspense>
+                <Item/>
+            </Suspense>
+
+        </div>
+    )
 }
 
