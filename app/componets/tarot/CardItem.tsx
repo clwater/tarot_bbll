@@ -2,7 +2,7 @@ import React from "react";
 import {Image, Link} from "@nextui-org/react";
 
 export const CardItem = ({card}: { card: CardEntity }) => {
-    const url = `/tarot/item?id=${card.id}`;
+    const url = `/tarot/tarot/item?id=${card.id}`;
 
     let badgeColor = 'outline-gray-500'
     switch (card.suit) {

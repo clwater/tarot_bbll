@@ -2,8 +2,8 @@
 
 
 import React from "react";
-import {Navbar, NavbarBrand, NavbarContent, NavbarItem, Link, Button} from "@nextui-org/react";
-import {AcmeLogo} from "@/app/componets/AcmeLogo";
+import {Navbar, NavbarBrand, NavbarContent, NavbarItem, Link, Button, NavbarMenu} from "@nextui-org/react";
+import {CatLogo} from "@/app/componets/CatLogo";
 import {useParams} from "next/navigation";
 
 export const Header = ({routeType= 0}) => {
@@ -13,7 +13,7 @@ export const Header = ({routeType= 0}) => {
     return (
         <Navbar isBordered>
             <NavbarBrand>
-                <AcmeLogo/>
+                <CatLogo/>
                 <Link color="foreground" href="/">
                     <p className="font-bold text-inherit">包包和蓝蓝</p>
                 </Link>
@@ -21,15 +21,16 @@ export const Header = ({routeType= 0}) => {
             </NavbarBrand>
 
             <NavbarContent justify="end">
+
                 <NavbarItem isActive={routeType === 1}>
-                    <Link color="foreground" href="/divine">
-                        Divine
+                    <Link color="foreground" href="/tarot">
+                        Tarot
                     </Link>
                 </NavbarItem>
 
                 <NavbarItem isActive={routeType === 2}>
-                    <Link color="foreground" href="/tarot">
-                        Tarot
+                    <Link color="foreground" href="/zy">
+                        周易
                     </Link>
                 </NavbarItem>
             </NavbarContent>

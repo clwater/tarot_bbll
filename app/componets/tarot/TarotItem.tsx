@@ -1,7 +1,6 @@
 // import {useRouter, useSearchParams} from "next/navigation";
 import React from "react";
 import {Image, Textarea} from "@nextui-org/react";
-import commonBack from '../assets/image/common_back.jpg'
 import {Chip} from "@nextui-org/chip";
 
 
@@ -20,13 +19,7 @@ export function TarotItem({id = '1'}) {
     }
 
     return (
-        <div
-            className="bg-opacity-75 text-white/90 bg-scroll hover:bg-fixed bg-cover bg-center w-full items-center justify-center min-h-1000 backdrop-blur-lg "
-            style={{
-                backgroundImage: `url(${commonBack.src})`,
-            }}
-
-        >
+        <div>
             <div
                 style={{
                     display: "flex",

@@ -1,8 +1,6 @@
 // import {useRouter, useSearchParams} from "next/navigation";
 import React from "react";
 import {Image, Textarea} from "@nextui-org/react";
-import commonBack from '../assets/image/common_back.jpg'
-import {Chip} from "@nextui-org/chip";
 
 
 let TarotManager = require('@/app/utils/TarotManager');

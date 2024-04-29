@@ -15,10 +15,9 @@ import {
 import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter} from "@nextui-org/react";
 
 
-import {DivineItem} from "@/app/componets/DivineItem";
+import {DivineItem} from "@/app/componets/tarot/DivineItem";
 import {useRouter} from "next/navigation";
-import commonBack from '../assets/image/common_back.jpg'
-import {SmallTarotItem} from "@/app/componets/SmallTarotItem";
+import {SmallTarotItem} from "@/app/componets/tarot/SmallTarotItem";
 
 let DivineUtils = require('@/app/utils/DivineUtils');
 
@@ -61,9 +60,6 @@ export const DivineParent = ({type: id = '0'}) => {
     return (
         <div
             className="bg-opacity-75 text-white/90 bg-scroll hover:bg-fixed bg-cover bg-center w-full items-center justify-center backdrop-blur-lg "
-            style={{
-                backgroundImage: `url(${commonBack.src})`,
-            }}
         >
             <Table hideHeader aria-label="Tarot">
                 <TableHeader>
@@ -116,7 +112,7 @@ export const DivineParent = ({type: id = '0'}) => {
                                 <SmallTarotItem id={checkId.toString()}/>
                             </ModalBody>
                             <ModalFooter className="justify-between">
-                                <Link href={`/tarot/item?id=${checkId}`} rel="noopener noreferrer" target="_blank">
+                                <Link href={`/tarot/tarot/item?id=${checkId}`} rel="noopener noreferrer" target="_blank">
                                     <Button  color="secondary" onClick={onClose}>
                                         <p>Detail</p>
                                     </Button>

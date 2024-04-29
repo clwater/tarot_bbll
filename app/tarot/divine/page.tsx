@@ -1,7 +1,6 @@
 import {Header} from "@/app/componets/header";
 import React from "react";
-import {CardItem} from "@/app/componets/CardArrayShowItem";
-import commonBack from "@/app/assets/image/common_back.jpg";
+import {CardItem} from "@/app/componets/tarot/CardArrayShowItem";
 
 
 let DivineUtils = require('@/app/utils/DivineUtils');
@@ -11,9 +10,6 @@ export default function Tarot() {
     return (
         <div
             className="bg-scroll  items-center justify-center text-white/90"
-            style={{
-                backgroundImage: `url(${commonBack.src})`,
-            }}
         >
             <Header routeType={1}/>
 

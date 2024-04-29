@@ -3,7 +3,7 @@
 import {Header} from "@/app/componets/header";
 import React, {Suspense} from "react";
 import {useSearchParams} from "next/navigation";
-import {DivineParent} from "@/app/componets/DivineParent";
+import {DivineParent} from "@/app/componets/tarot/DivineParent";
 
 function Item() {
     const searchParams = useSearchParams();

@@ -1,91 +1,32 @@
-"use client";
-
-import React, {Suspense} from "react";
-
 import {Header} from "@/app/componets/header";
-import {CardItem} from "@/app/componets/CardItem";
-import {Accordion, AccordionItem} from "@nextui-org/react";
-import commonBack from "@/app/assets/image/common_back.jpg";
-let TarotManager = require('@/app/utils/TarotManager');
+import {Card, Image, Link} from "@nextui-org/react";
+import React from "react";
 
+import cardImage from '@/app/assets/image/card_back.jpg'
 
-export default function Tarot() {
-    const major = TarotManager.getTarotDataMajor();
-    const wands = TarotManager.getTarotDataMinors("wands");
-    const pentacles = TarotManager.getTarotDataMinors("pentacles");
-    const cups = TarotManager.getTarotDataMinors("cups");
-    const swords = TarotManager.getTarotDataMinors("swords");
+export default function TarotMenu() {
     return (
-        <div
-            className="bg-scroll  w-full items-center justify-center text-white/90 min-h-1000"
-            style={{
-                backgroundImage: `url(${commonBack.src})`,
-            }}
-        >
-            <Header routeType={2}/>
 
-            <Accordion defaultSelectedKeys={"1"}>
-                <AccordionItem key="1" aria-label="Major" title="Major">
-                    <div className="grid grid-cols-3 gap-4 px-4  justify-center text-centerjustify-center text-center">
-                        {
-                            major.map((card: CardEntity, index: number) => (
-                                <div key={card.id}>
-                                    <CardItem card={card}/>
-                                </div>
-                            ))
-                        }
-                    </div>
-                </AccordionItem>
+        <div>
+            <Header routeType={1}/>
 
-                <AccordionItem key="2" aria-label="Wands" title="Wands">
-                    <div className="grid grid-cols-3 gap-4 px-4">
-                        {
-                            wands.map((card: CardEntity, index: number) => (
-                                <div key={card.id}>
-                                    <CardItem card={card}/>
-                                </div>
-                            ))
-                        }
-                    </div>
-                </AccordionItem>
 
-                <AccordionItem key="3" aria-label="Pentacles" title="Pentacles">
-                    <div className="grid grid-cols-3 gap-4 px-4">
-                        {
-                            pentacles.map((card: CardEntity, index: number) => (
-                                <div key={card.id}>
-                                    <CardItem card={card}/>
-                                </div>
-                            ))
-                        }
-                    </div>
-                </AccordionItem>
+            <Link className="w-full" href="/tarot/divine">
+                <Card className="m-4 p-4 flex flex-row w-full">
+                    <p className="text-2xl flex-1">Tarot Divine</p>
+                    <p className="flex-none text-center ">{"->"}</p>
+                </Card>
+            </Link>
 
-                <AccordionItem key="4" aria-label="Cups" title="Cups">
-                    <div className="grid grid-cols-3 gap-4 px-4">
-                        {
-                            cups.map((card: CardEntity, index: number) => (
-                                <div key={card.id}>
-                                    <CardItem card={card}/>
-                                </div>
-                            ))
-                        }
-                    </div>
-                </AccordionItem>
+            <Link className="w-full" href="/tarot/tarot">
+                <Card className="m-4 p-4 flex flex-row w-full">
+                    <p className="text-2xl flex-1">Tarot Detail</p>
+                    <p className="flex-none text-center ">{"->"}</p>
+                </Card>
+            </Link>
 
-                <AccordionItem key="5" aria-label="Swords" title="Swords">
-                    <div className="grid grid-cols-3 gap-4 px-4">
-                        {
-                            swords.map((card: CardEntity, index: number) => (
-                                <div key={card.id}>
-                                    <CardItem card={card}/>
-                                </div>
-                            ))
-                        }
-                    </div>
-                </AccordionItem>
-            </Accordion>
 
         </div>
-    );
+
+    )
 }
