@@ -19,10 +19,10 @@ export default function Tarot() {
 
 
             {/*<div className="grid grid-rows-3 grid-flow-col gap-4">*/}
-            <div className=" px-4 py-4">
+            <div className=" px-2 py-1 gap-2">
                 {
                     matrixs.map((cardArrayItem: CardArrayItem, index: number) => (
-                        <div key={cardArrayItem.id} className="h-1/2">
+                        <div key={cardArrayItem.id} className="">
                             <CardItem card={cardArrayItem}/>
                         </div>
                     ))
