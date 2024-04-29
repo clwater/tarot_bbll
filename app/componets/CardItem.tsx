@@ -36,7 +36,7 @@ export const CardItem = ({card}: { card: CardEntity }) => {
                     <Image
                         alt="Woman listing to music"
                         className="object-cover"
-                        height={320}
+                        height={200}
                         src={card.image}
                         width={200}
                     />

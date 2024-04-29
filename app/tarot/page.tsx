@@ -26,7 +26,7 @@ export default function Tarot() {
 
             <Accordion defaultSelectedKeys={"1"}>
                 <AccordionItem key="1" aria-label="Major" title="Major">
-                    <div className="grid grid-cols-4 gap-4 px-4">
+                    <div className="grid grid-cols-3 gap-4 px-4  justify-center text-centerjustify-center text-center">
                         {
                             major.map((card: CardEntity, index: number) => (
                                 <div key={card.id}>
@@ -38,7 +38,7 @@ export default function Tarot() {
                 </AccordionItem>
 
                 <AccordionItem key="2" aria-label="Wands" title="Wands">
-                    <div className="grid grid-cols-4 gap-4 px-4">
+                    <div className="grid grid-cols-3 gap-4 px-4">
                         {
                             wands.map((card: CardEntity, index: number) => (
                                 <div key={card.id}>
@@ -50,7 +50,7 @@ export default function Tarot() {
                 </AccordionItem>
 
                 <AccordionItem key="3" aria-label="Pentacles" title="Pentacles">
-                    <div className="grid grid-cols-4 gap-4 px-4">
+                    <div className="grid grid-cols-3 gap-4 px-4">
                         {
                             pentacles.map((card: CardEntity, index: number) => (
                                 <div key={card.id}>
@@ -62,7 +62,7 @@ export default function Tarot() {
                 </AccordionItem>
 
                 <AccordionItem key="4" aria-label="Cups" title="Cups">
-                    <div className="grid grid-cols-4 gap-4 px-4">
+                    <div className="grid grid-cols-3 gap-4 px-4">
                         {
                             cups.map((card: CardEntity, index: number) => (
                                 <div key={card.id}>
@@ -74,7 +74,7 @@ export default function Tarot() {
                 </AccordionItem>
 
                 <AccordionItem key="5" aria-label="Swords" title="Swords">
-                    <div className="grid grid-cols-4 gap-4 px-4">
+                    <div className="grid grid-cols-3 gap-4 px-4">
                         {
                             swords.map((card: CardEntity, index: number) => (
                                 <div key={card.id}>
