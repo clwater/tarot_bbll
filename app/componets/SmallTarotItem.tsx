@@ -8,22 +8,20 @@ import {Chip} from "@nextui-org/chip";
 let TarotManager = require('@/app/utils/TarotManager');
 
 export function SmallTarotItem({id = '1'}) {
-    console.log(id)
 
     const card = TarotManager.getTarotData(parseInt(id));
-    console.log(card)
 
     return (
         <div
-            className="bg-black text-white"
+            className="text-white"
         >
-            <div className="px-8 py-8">
+            <div className="">
                 <b>{card.name}</b>
                 <br/>
 
                 <Textarea
                     isReadOnly
-                    label={<b>Mean up:</b>}
+                    label={<b className="text-white">Mean up:</b>}
                     variant="bordered"
                     labelPlacement="outside"
                     placeholder=""
@@ -33,7 +31,7 @@ export function SmallTarotItem({id = '1'}) {
 
                 <Textarea
                     isReadOnly
-                    label={<b>Mean rev:</b>}
+                    label={<b className="text-white">Mean rev:</b>}
                     variant="bordered"
                     labelPlacement="outside"
                     placeholder=""

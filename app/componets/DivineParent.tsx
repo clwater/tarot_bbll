@@ -9,7 +9,7 @@ import {
     TableRow,
     TableCell,
     Button,
-    useDisclosure
+    useDisclosure, Link
 } from "@nextui-org/react";
 
 import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter} from "@nextui-org/react";
@@ -36,13 +36,10 @@ export const DivineParent = ({type: id = '0'}) => {
 
     let init = false
     const handleOpen = (x: number, y: number) => {
-        console.log('==========')
-        console.log(x, y)
 
         let _id = matrix[x][y]
         if (_id < 0) _id = -1 * _id
         setCheckId(_id)
-        console.log(_id)
         onOpen();
     }
 
@@ -67,30 +64,7 @@ export const DivineParent = ({type: id = '0'}) => {
             style={{
                 backgroundImage: `url(${commonBack.src})`,
             }}
-
         >
-
-            <Modal
-                isOpen={isOpen}
-                onClose={onClose}
-            >
-                <ModalContent>
-                    {(onClose) => (
-                        <>
-                            <ModalHeader className="flex flex-col gap-1 bg-black">Modal Title</ModalHeader>
-                            <ModalBody>
-                                <SmallTarotItem id={checkId.toString()}/>
-                            </ModalBody>
-                            <ModalFooter>
-                                <Button color="primary" onPress={onClose}>
-                                    <p>Ok</p>
-                                </Button>
-                            </ModalFooter>
-                        </>
-                    )}
-                </ModalContent>
-            </Modal>
-
             <Table hideHeader aria-label="Tarot">
                 <TableHeader>
                     {
@@ -126,10 +100,36 @@ export const DivineParent = ({type: id = '0'}) => {
                     updateMatrix()
                     router.refresh()
                 }}
-                // onClick={updateMatrix()}
             >
                 <b>Refresh</b>
             </Button>
+            <Modal
+                isOpen={isOpen}
+                onClose={onClose}
+                hideCloseButton={true}
+                className="bg-gray-900 text-white/90 "
+            >
+                <ModalContent>
+                    {(onClose) => (
+                        <>
+                            <ModalBody>
+                                <SmallTarotItem id={checkId.toString()}/>
+                            </ModalBody>
+                            <ModalFooter className="justify-between">
+                                <Link href={`/tarot/item?id=${checkId}`} rel="noopener noreferrer" target="_blank">
+                                    <Button  color="secondary" onClick={onClose}>
+                                        <p>Detail</p>
+                                    </Button>
+                                </Link>
+
+                                <Button color="primary" onPress={onClose}>
+                                    <p>Close</p>
+                                </Button>
+                            </ModalFooter>
+                        </>
+                    )}
+                </ModalContent>
+            </Modal>
         </div>
 
     )
