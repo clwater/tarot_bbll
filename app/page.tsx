@@ -6,8 +6,17 @@ import {ArrowRight} from "@/app/componets/Icons/ArrowRight";
 let TarotManager = require('@/app/utils/TarotManager');
 
 const Home = () => {
-    const randomTaro = Math.floor(Math.random() * 78) + 1
+
+    let seed = Math.floor(Date.now())
+
+    function random() {
+        const x = Math.sin(seed++) * 10000;
+        return x - Math.floor(x);
+    }
+
+    const randomTaro = Math.floor(random() * 78) + 1
     const cardImage = TarotManager.getTarotData(randomTaro).image
+
 
     return (
         <div
@@ -35,9 +44,9 @@ const Home = () => {
                     <Link href={"/tarot"}>
                         <div
                             className="text-2xl text-end align-text-bottom w-full flex-none text-gray-400">
-                           <Button>
-                               Divine
-                           </Button>
+                            <Button>
+                                Divine
+                            </Button>
                         </div>
 
                     </Link>
@@ -69,8 +78,6 @@ const Home = () => {
                     </Link>
                 </div>
             </Card>
-
-
         </div>
 
     );
