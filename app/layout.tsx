@@ -4,6 +4,8 @@ import "./globals.css";
 import {Providers} from "./providers";
 import commonBack from "@/app/assets/image/common_back.jpg";
 
+import { Analytics } from "@vercel/analytics/react"
+
 const inter = Inter({subsets: ["latin"]});
 
 export const metadata: Metadata = {
@@ -26,6 +28,7 @@ export default function RootLayout({
             >
                 <Providers>
                     {children}
+                    <Analytics />t i
                 </Providers>
             </body>
         </html>
