@@ -1,6 +1,6 @@
 'use client'
 
-import {Header} from "@/app/componets/header";
+import {Header} from "@/app/componets/Header";
 import React, {Suspense} from "react";
 import {useSearchParams} from "next/navigation";
 import {DivineParent} from "@/app/componets/tarot/DivineParent";

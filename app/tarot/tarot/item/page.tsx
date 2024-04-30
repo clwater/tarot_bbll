@@ -1,7 +1,7 @@
 'use client';
 import React, {Suspense} from "react";
 import {TarotItem} from "@/app/componets/tarot/TarotItem";
-import {Header} from "@/app/componets/header";
+import {Header} from "@/app/componets/Header";
 import {useSearchParams} from "next/navigation";
 
 function Item() {

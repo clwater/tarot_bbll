@@ -2,7 +2,7 @@
 
 import React, {Suspense} from "react";
 
-import {Header} from "@/app/componets/header";
+import {Header} from "@/app/componets/Header";
 import {CardItem} from "@/app/componets/tarot/CardItem";
 import {Accordion, AccordionItem} from "@nextui-org/react";
 let TarotManager = require('@/app/utils/TarotManager');

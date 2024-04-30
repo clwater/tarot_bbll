@@ -1,4 +1,4 @@
-import {Header} from "@/app/componets/header";
+import {Header} from "@/app/componets/Header";
 import React from "react";
 import {CardItem} from "@/app/componets/tarot/CardArrayShowItem";
 

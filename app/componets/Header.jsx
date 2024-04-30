@@ -3,8 +3,7 @@
 
 import React from "react";
 import {Navbar, NavbarBrand, NavbarContent, NavbarItem, Link, Button, NavbarMenu} from "@nextui-org/react";
-import {CatLogo} from "@/app/componets/CatLogo";
-import {useParams} from "next/navigation";
+import {CatLogo} from "@/app/componets/Icons/CatLogo";
 
 export const Header = ({routeType= 0}) => {
 

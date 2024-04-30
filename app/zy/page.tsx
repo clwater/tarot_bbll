@@ -4,7 +4,7 @@
 
 
 import React from "react";
-import {Header} from "@/app/componets/header";
+import {Header} from "@/app/componets/Header";
 
 export default function ZhouYi() {
 

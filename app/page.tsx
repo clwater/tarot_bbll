@@ -1,6 +1,7 @@
-import {Header} from "@/app/componets/header";
-import {Card, Image, Link} from "@nextui-org/react";
+import {Header} from "@/app/componets/Header";
+import {Button, Card, Image, Link} from "@nextui-org/react";
 import React from "react";
+import {ArrowRight} from "@/app/componets/Icons/ArrowRight";
 
 let TarotManager = require('@/app/utils/TarotManager');
 
@@ -32,9 +33,13 @@ const Home = () => {
                         Tarot
                     </p>
                     <Link href={"/tarot"}>
-                        <p className="text-2xl text-end align-text-bottom w-full flex-none text-gray-400">
-                            {"Start ->"}
-                        </p>
+                        <div
+                            className="text-2xl text-end align-text-bottom w-full flex-none text-gray-400">
+                           <Button>
+                               Divine
+                           </Button>
+                        </div>
+
                     </Link>
                 </div>
             </Card>
@@ -55,9 +60,12 @@ const Home = () => {
                         周易
                     </p>
                     <Link href={"/zy"}>
-                        <p className="text-2xl text-end align-text-bottom w-full flex-none text-gray-400">
-                            {"Start ->"}
-                        </p>
+                        <div
+                            className="text-2xl text-end align-text-bottom w-full flex-none text-gray-400">
+                            <Button>
+                                启卦
+                            </Button>
+                        </div>
                     </Link>
                 </div>
             </Card>
