@@ -62,36 +62,24 @@ export const DivineParent = ({type: id = '0'}) => {
         <div
             className="bg-opacity-75 text-white/90 bg-scroll hover:bg-fixed bg-cover bg-center w-full items-center justify-center backdrop-blur-lg "
         >
-            <Table hideHeader aria-label="Tarot">
-                <TableHeader>
-                    {
-                        matrix[0].map((index: number) => (
-                            <TableColumn key={index}>index</TableColumn>
-                        ))
-                    }
-                </TableHeader>
-                <TableBody>
-                    {
-                        matrix.map((row: number[], rowIndex: number) => (
-                            <TableRow key={rowIndex}>
-                                {row.map((element, columnIndex) => (
-                                    <TableCell key={row.length * 10 + rowIndex}>
-                                        <div
-                                            onClick={() => {
-                                                handleOpen(rowIndex, columnIndex)
-                                            }}
-                                        >
-                                            <DivineItem cardId={element}/>
-                                        </div>
+            <div className="p-4">
+                {
 
-                                    </TableCell>
-                                ))}
-                            </TableRow>
-                        ))
-                    }
-                </TableBody>
+                    matrix.map((row: number[], rowIndex: number) => (
+                        <div className="flex flex-row">{
+                            row.map((element, columnIndex) => (
+                                <div key={rowIndex.toString() + columnIndex.toString()}
+                                     className="flex-1"
+                                     onClick={() => handleOpen(rowIndex, columnIndex)}>
+                                    <DivineItem cardId={element}/>
+                                </div>
+                            ))
+                        }
+                        </div>
+                    ))
+                }
 
-            </Table>
+            </div>
             <Button
                 onClick={() => {
                     updateMatrix()
@@ -113,8 +101,9 @@ export const DivineParent = ({type: id = '0'}) => {
                                 <SmallTarotItem id={checkId.toString()}/>
                             </ModalBody>
                             <ModalFooter className="justify-between">
-                                <Link href={`/tarot/tarot/item?id=${checkId}`} rel="noopener noreferrer" target="_blank">
-                                    <Button  color="secondary" onClick={onClose}>
+                                <Link href={`/tarot/tarot/item?id=${checkId}`} rel="noopener noreferrer"
+                                      target="_blank">
+                                    <Button color="secondary" onClick={onClose}>
                                         <p>Detail</p>
                                     </Button>
                                 </Link>

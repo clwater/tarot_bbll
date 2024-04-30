@@ -7,7 +7,9 @@ const cardMatrix_1: CardArrayItem = {
     matrix: [
         [-1, -2, -3],
     ],
-    name: '三张牌/时间流'
+    name: '三张牌/时间流',
+    wSize: 2,
+    hSize: 2
 }
 
 const cardMatrix_2: CardArrayItem = {
@@ -16,7 +18,9 @@ const cardMatrix_2: CardArrayItem = {
         [-2, 0, -3],
         [0, -1, 0],
     ],
-    name: '圣三角'
+    name: '圣三角',
+    wSize: 2,
+    hSize: 2
 }
 
 const cardMatrix_3: CardArrayItem = {
@@ -25,7 +29,9 @@ const cardMatrix_3: CardArrayItem = {
         [0, -4, 0],
         [-1, -2, -3],
     ],
-    name: '身心灵'
+    name: '身心灵',
+    wSize: 2,
+    hSize: 2
 }
 
 const cardMatrix_4: CardArrayItem = {
@@ -34,7 +40,9 @@ const cardMatrix_4: CardArrayItem = {
         [-1, -4],
         [-2, -3],
     ],
-    name: '四元素'
+    name: '四元素',
+    wSize: 2,
+    hSize: 2
 }
 
 const cardMatrix_5: CardArrayItem = {
@@ -43,36 +51,44 @@ const cardMatrix_5: CardArrayItem = {
         [0, -4, 0],
         [-2, -1, -3],
     ],
-    name: '金字塔'
+    name: '金字塔',
+    wSize: 2,
+    hSize: 2
 }
 
 const cardMatrix_6: CardArrayItem = {
     id: 6,
     matrix: [
-        [0, -3, 0],
-        [-1, -4, -2],
-        [0, -5, 0],
+        [-1, -3, -5],
+        [-2, -4, -6],
     ],
-    name: '大十字'
+    name: '灵感对应',
+    wSize: 2,
+    hSize: 2
 }
 
 const cardMatrix_7: CardArrayItem = {
     id: 7,
     matrix: [
+        [0, -3, 0],
+        [-1, -4, -2],
+        [0, -5, 0],
+    ],
+    name: '大十字',
+    wSize: 2,
+    hSize: 3
+}
+
+const cardMatrix_8: CardArrayItem = {
+    id: 8,
+    matrix: [
         [-4, 0, 0, 0, -5],
         [0, -2, 0, -3, 0],
         [0, 0, -1, 0, 0],
     ],
-    name: '二选一'
-}
-
-const cardMatrix_8: CardArrayItem = {
-    id: 6,
-    matrix: [
-        [-1, -3, -5],
-        [-2, -4, -6],
-    ],
-    name: '灵感对应'
+    name: '二选一',
+    wSize: 2,
+    hSize: 3
 }
 
 const cardMatrix_9: CardArrayItem = {
@@ -84,7 +100,9 @@ const cardMatrix_9: CardArrayItem = {
         [ -3, 0, 0, 0, -2],
         [0, 0, -4, 0, 0],
     ],
-    name: '六芒星'
+    name: '六芒星',
+    wSize: 2,
+    hSize: 4
 }
 
 const cardMatrixs = [
