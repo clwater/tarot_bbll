@@ -30,7 +30,7 @@ export const DivineItem = ({cardId = 0, isOpen = false}) => {
                     <p className=" text-center max">
                         <small>
                             {
-                                isOpen ? `${card.name}` : "[un know]"
+                                isOpen ? `${card.name}` : ""
                             }
                         </small>
                     </p>
