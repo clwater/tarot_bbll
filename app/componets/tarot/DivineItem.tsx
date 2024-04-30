@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useImperativeHandle} from "react";
 import {Image} from "@nextui-org/react";
 import cardBack from "@/app/assets/image/card_back.jpg";
 
@@ -14,7 +14,10 @@ export function DivineItem({cardId = 0}) {
     const isRev = cardId < 0
     card = isRev ? TarotManager.getTarotData(-1 * cardId) : card
 
-    const revClass = isRev ? "rotate-180" : ""
+    const _revClass = isRev ? "rotate-180" : ""
+    const [revClass, setRevClass] = React.useState("")
+
+
 
     const [isOpen, setIsOpen] = React.useState(false)
 
@@ -26,6 +29,7 @@ export function DivineItem({cardId = 0}) {
 
                 }else {
                     setIsOpen(true)
+                    setRevClass(_revClass)
                 }
             }}
         >

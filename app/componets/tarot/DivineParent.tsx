@@ -2,12 +2,6 @@
 import React from "react";
 
 import {
-    Table,
-    TableHeader,
-    TableColumn,
-    TableBody,
-    TableRow,
-    TableCell,
     Button,
     useDisclosure, Link
 } from "@nextui-org/react";
@@ -19,18 +13,20 @@ import {DivineItem} from "@/app/componets/tarot/DivineItem";
 import {useRouter} from "next/navigation";
 import {SmallTarotItem} from "@/app/componets/tarot/SmallTarotItem";
 
+
 let DivineUtils = require('@/app/utils/DivineUtils');
 
-
-export const DivineParent = ({type: id = '0'}) => {
+export const DivineParent = ({type: id = '0', randomId: randomId = '0'}) => {
     const router = useRouter()
-
+    const url = `/tarot/divine/item?id=${id}&randomId=${ Math.floor(Math.random() * 1000)}`;
+    const _url = `/tarot/divine/item?id=${id}&randomId=${ Math.floor(Math.random() * 1000)}`;
+    if (randomId === '0'){
+        router.push(url)
+    }
 
     const matrixItem: CardArrayItem = DivineUtils.get(id)
     const matrix = matrixItem.matrix
-
     const {isOpen, onOpen, onClose} = useDisclosure();
-
     const [checkId, setCheckId] = React.useState(0);
 
     // let checkId = 0
@@ -43,13 +39,19 @@ export const DivineParent = ({type: id = '0'}) => {
         onOpen();
     }
 
+    let seed = parseInt(randomId)
+
+    function random() {
+        const x = Math.sin(seed++) * 10000;
+        return x - Math.floor(x);
+    }
 
     function updateMatrix() {
         matrix.map((row: number[], rowIndex: number) => {
                 row.map((element, columnIndex) => {
                     if (element === 0) return
-                    matrix[rowIndex][columnIndex] = Math.floor(Math.random() * 78) + 1
-                    if (Math.random() < 0.5) {
+                    matrix[rowIndex][columnIndex] = Math.floor(random() * 78) + 1
+                    if (random() < 0.5) {
                         matrix[rowIndex][columnIndex] = -1 * matrix[rowIndex][columnIndex]
                     }
                 })
@@ -57,6 +59,7 @@ export const DivineParent = ({type: id = '0'}) => {
         )
     }
 
+    updateMatrix()
 
     return (
         <div
@@ -70,7 +73,7 @@ export const DivineParent = ({type: id = '0'}) => {
                             row.map((element, columnIndex) => (
                                 <div key={rowIndex * 10 + columnIndex}
                                      className="flex-1"
-                                     // onClick={() => handleOpen(rowIndex, columnIndex)}
+                                     onClick={() => handleOpen(rowIndex, columnIndex)}
                                 >
                                     <DivineItem cardId={element}/>
                                 </div>
@@ -81,14 +84,17 @@ export const DivineParent = ({type: id = '0'}) => {
                 }
 
             </div>
-            <Button
-                onClick={() => {
+
+            <Link href={_url}>
+                <Button onClick={() => {
+                    // refresh()
                     updateMatrix()
-                    router.refresh()
-                }}
-            >
-                <b>Refresh</b>
-            </Button>
+
+                }}>
+                    <b>Refresh</b>
+                </Button>
+            </Link>
+
             <Modal
                 isOpen={isOpen}
                 onClose={onClose}

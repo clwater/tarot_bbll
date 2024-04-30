@@ -8,11 +8,16 @@ import {DivineParent} from "@/app/componets/tarot/DivineParent";
 function Item() {
     const searchParams = useSearchParams();
     let cardArrayId = searchParams.get('id')
+    let randomId = searchParams.get('randomId')
     if (cardArrayId === null) {
         cardArrayId = '0'
     }
 
-    return <DivineParent type={cardArrayId}/>
+    if (randomId === null) {
+        randomId = '0'
+    }
+
+    return <DivineParent type={cardArrayId} randomId={randomId}/>
 }
 
 export default function Divine() {
