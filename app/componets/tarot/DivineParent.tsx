@@ -33,12 +33,13 @@ export const DivineParent = ({type: id = '0'}) => {
 
     const [checkId, setCheckId] = React.useState(0);
 
-    let init = false
+    // let checkId = 0
     const handleOpen = (x: number, y: number) => {
 
         let _id = matrix[x][y]
         if (_id < 0) _id = -1 * _id
         setCheckId(_id)
+        // checkId = _id
         onOpen();
     }
 

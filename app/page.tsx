@@ -1,11 +1,6 @@
 import {Header} from "@/app/componets/header";
-import Head from "next/head";
-import {CardFooter} from "@nextui-org/card";
-import {TarotItem} from "@/app/componets/tarot/TarotItem";
-import {SmallTarotItem} from "@/app/componets/tarot/SmallTarotItem";
-import {Card, CardBody, Image, Button, Slider, CardHeader, Link} from "@nextui-org/react";
+import {Card, Image, Link} from "@nextui-org/react";
 import React from "react";
-import {CatLogoBig} from "@/app/componets/CatLogoBig";
 
 let TarotManager = require('@/app/utils/TarotManager');
 
