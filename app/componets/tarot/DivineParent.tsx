@@ -62,15 +62,16 @@ export const DivineParent = ({type: id = '0'}) => {
         <div
             className="bg-opacity-75 text-white/90 bg-scroll hover:bg-fixed bg-cover bg-center w-full items-center justify-center backdrop-blur-lg "
         >
-            <div className="p-4">
+            <div className="p-4 flex flex-col">
                 {
 
                     matrix.map((row: number[], rowIndex: number) => (
-                        <div className="flex flex-row">{
+                        <div className="flex flex-row flex-1" key={rowIndex}>{
                             row.map((element, columnIndex) => (
-                                <div key={rowIndex.toString() + columnIndex.toString()}
+                                <div key={rowIndex * 10 + columnIndex}
                                      className="flex-1"
-                                     onClick={() => handleOpen(rowIndex, columnIndex)}>
+                                     // onClick={() => handleOpen(rowIndex, columnIndex)}
+                                >
                                     <DivineItem cardId={element}/>
                                 </div>
                             ))
