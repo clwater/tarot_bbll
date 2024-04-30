@@ -18,9 +18,9 @@ let DivineUtils = require('@/app/utils/DivineUtils');
 
 export const DivineParent = ({type: id = '0', randomId: randomId = '0'}) => {
     const router = useRouter()
-    const url = `/tarot/divine/item?id=${id}&randomId=${ Math.floor(Math.random() * 1000)}`;
-    const _url = `/tarot/divine/item?id=${id}&randomId=${ Math.floor(Math.random() * 1000)}`;
-    if (randomId === '0'){
+    const url = `/tarot/divine/item?id=${id}&randomId=${Math.floor(Math.random() * 1000)}`;
+    const _url = `/tarot/divine/item?id=${id}&randomId=${Math.floor(Math.random() * 1000)}`;
+    if (randomId === '0') {
         router.push(url)
     }
 
@@ -29,14 +29,34 @@ export const DivineParent = ({type: id = '0', randomId: randomId = '0'}) => {
     const {isOpen, onOpen, onClose} = useDisclosure();
     const [checkId, setCheckId] = React.useState(0);
 
-    // let checkId = 0
+
+    let _openMap = new Map()
+
+    matrix.map((row: number[], rowIndex: number) => {
+            row.map((element, columnIndex) => {
+                if (element === 0) return
+                _openMap.set(rowIndex * 10 + columnIndex, false)
+            })
+        }
+    )
+
+    const [open, setOpen] = React.useState(_openMap)
+
     const handleOpen = (x: number, y: number) => {
 
         let _id = matrix[x][y]
         if (_id < 0) _id = -1 * _id
         setCheckId(_id)
-        // checkId = _id
-        onOpen();
+
+        if (open.get(x * 10 + y)) {
+            onOpen()
+            return
+        } else {
+            setOpen(prevState => {
+                prevState.set(x * 10 + y, true)
+                return prevState
+            })
+        }
     }
 
     let seed = parseInt(randomId)
@@ -75,7 +95,7 @@ export const DivineParent = ({type: id = '0', randomId: randomId = '0'}) => {
                                      className="flex-1"
                                      onClick={() => handleOpen(rowIndex, columnIndex)}
                                 >
-                                    <DivineItem cardId={element}/>
+                                    <DivineItem cardId={element} isOpen={open.get(rowIndex * 10 + columnIndex)}/>
                                 </div>
                             ))
                         }
@@ -85,13 +105,14 @@ export const DivineParent = ({type: id = '0', randomId: randomId = '0'}) => {
 
             </div>
 
-            <Link href={_url}>
+            <Link href={_url} className="w-full px-4">
                 <Button onClick={() => {
                     // refresh()
                     updateMatrix()
-
-                }}>
-                    <b>Refresh</b>
+                }}
+                        className="w-full"
+                >
+                    <b>Divine</b>
                 </Button>
             </Link>
 
