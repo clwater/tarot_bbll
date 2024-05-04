@@ -20,68 +20,62 @@ export default function Tarot() {
         >
             <Header routeType={2}/>
 
-            <Accordion defaultSelectedKeys={"1"}>
-                <AccordionItem key="1" aria-label="Major" title="Major">
-                    <div className="grid grid-cols-3 gap-4 px-4  justify-center text-centerjustify-center text-center">
-                        {
-                            major.map((card: CardEntity, index: number) => (
-                                <div key={card.id}>
-                                    <CardItem card={card}/>
-                                </div>
-                            ))
-                        }
-                    </div>
-                </AccordionItem>
+            <p className="px-4 py-4 text-2xl">Major</p>
+            <div className="grid grid-cols-3 gap-4 px-4  justify-center text-centerjustify-center text-center">
+                {
+                    major.map((card: CardEntity, index: number) => (
+                        <div key={card.id}>
+                            <CardItem card={card}/>
+                        </div>
+                    ))
+                }
+            </div>
 
-                <AccordionItem key="2" aria-label="Wands" title="Wands">
-                    <div className="grid grid-cols-3 gap-4 px-4">
-                        {
-                            wands.map((card: CardEntity, index: number) => (
-                                <div key={card.id}>
-                                    <CardItem card={card}/>
-                                </div>
-                            ))
-                        }
-                    </div>
-                </AccordionItem>
+            <p className="px-4 py-4 text-2xl">Wands</p>
+                <div className="grid grid-cols-3 gap-4 px-4">
+                    {
+                        wands.map((card: CardEntity, index: number) => (
+                            <div key={card.id}>
+                                <CardItem card={card}/>
+                            </div>
+                        ))
+                    }
+                </div>
 
-                <AccordionItem key="3" aria-label="Pentacles" title="Pentacles">
-                    <div className="grid grid-cols-3 gap-4 px-4">
-                        {
-                            pentacles.map((card: CardEntity, index: number) => (
-                                <div key={card.id}>
-                                    <CardItem card={card}/>
-                                </div>
-                            ))
-                        }
-                    </div>
-                </AccordionItem>
+            <p className="px-4 py-4 text-2xl">Pentacles</p>
+                <div className="grid grid-cols-3 gap-4 px-4">
+                    {
+                        pentacles.map((card: CardEntity, index: number) => (
+                            <div key={card.id}>
+                                <CardItem card={card}/>
+                            </div>
+                        ))
+                    }
+                </div>
 
-                <AccordionItem key="4" aria-label="Cups" title="Cups">
-                    <div className="grid grid-cols-3 gap-4 px-4">
-                        {
-                            cups.map((card: CardEntity, index: number) => (
-                                <div key={card.id}>
-                                    <CardItem card={card}/>
-                                </div>
-                            ))
-                        }
-                    </div>
-                </AccordionItem>
+            <p className="px-4 py-4 text-2xl">Cups</p>
+                <div className="grid grid-cols-3 gap-4 px-4">
+                    {
+                        cups.map((card: CardEntity, index: number) => (
+                            <div key={card.id}>
+                                <CardItem card={card}/>
+                            </div>
+                        ))
+                    }
+                </div>
 
-                <AccordionItem key="5" aria-label="Swords" title="Swords">
-                    <div className="grid grid-cols-3 gap-4 px-4">
-                        {
-                            swords.map((card: CardEntity, index: number) => (
-                                <div key={card.id}>
-                                    <CardItem card={card}/>
-                                </div>
-                            ))
-                        }
-                    </div>
-                </AccordionItem>
-            </Accordion>
+            <p className="px-4 py-4 text-2xl">Swords</p>
+                <div className="grid grid-cols-3 gap-4 px-4">
+                    {
+                        swords.map((card: CardEntity, index: number) => (
+                            <div key={card.id}>
+                                <CardItem card={card}/>
+                            </div>
+                        ))
+                    }
+                </div>
 
-        </div>
-    );
+</div>
+)
+    ;
 }
