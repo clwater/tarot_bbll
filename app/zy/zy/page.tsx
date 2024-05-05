@@ -7,29 +7,16 @@ import {Header} from "@/app/componets/Header";
 import {supabase} from "@/app/utils/API";
 
 
+interface ZY {
+    id: number;
+    name: string;
+}
 
 export default async function ZhouYi() {
-    //
-    // const data = await supabase
-    //     .from('zy')
-    //     .select('*')
-    //
-    //
-    const {data, error } = await supabase.from('zy').select();
-    console.log(data);
-    // // console.log(error);
-
-
-    // const { data, error } = await supabase
-    //     .from('zy')
-    //     .insert([
-    //         { some_column: ''},
-    //     ])
-    //     .select()
-    //
-    // console.log(data);
-    // console.log(error);
-
+    const {data, error }: {data: ZY[]| null, error: any} = await supabase.from('zy').select();
+    if (data != null) {
+        console.log(data[0]);
+    }
 
     return (
         <div
