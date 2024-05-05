@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "@nextui-org/react": "^2.3.6",
+    "@supabase/ssr": "^0.3.0",
+    "@supabase/supabase-js": "^2.43.1",
     "@vercel/analytics": "^1.2.2",
     "framer-motion": "^11.1.7",
     "next": "14.2.2",

@@ -1,12 +1,35 @@
-"use client";
+'use client';
 
-
-
-
-import React from "react";
+import React, {useEffect} from "react";
 import {Header} from "@/app/componets/Header";
+// import {createClient} from "@/app/utils/server";
 
-export default function ZhouYi() {
+import {supabase} from "@/app/utils/API";
+
+
+
+export default async function ZhouYi() {
+    //
+    // const data = await supabase
+    //     .from('zy')
+    //     .select('*')
+    //
+    //
+    const {data, error } = await supabase.from('zy').select();
+    console.log(data);
+    // // console.log(error);
+
+
+    // const { data, error } = await supabase
+    //     .from('zy')
+    //     .insert([
+    //         { some_column: ''},
+    //     ])
+    //     .select()
+    //
+    // console.log(data);
+    // console.log(error);
+
 
     return (
         <div
@@ -16,6 +39,9 @@ export default function ZhouYi() {
             <p>
                 ZY
             </p>
+
+            <pre>{JSON.stringify(data, null, 2)}</pre>
+            {/*<pre>111</pre>*/}
 
         </div>
     );
