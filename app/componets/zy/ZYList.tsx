@@ -2,17 +2,21 @@
 
 import React from "react";
 import {GuaImage} from "@/app/componets/zy/GuaImage";
+import {Link} from "@nextui-org/react";
 
 let API = require('@/app/utils/API');
 
 function ZYItem(props: { gua: GuaSimpleEntity }) {
+    console.log(props.gua)
     return (
+        <Link href={`/zy/zy/item?id=${props.gua.index}`} className="">
         <div className="w-full p-2 flex flex-col">
-            <p className="flex-none w-full text-center">{props.gua.name}<small>({props.gua.name_detail})</small></p>
+            <p className="flex-none w-full text-center text-white">{props.gua.name}<small>({props.gua.name_detail})</small></p>
             <div className="flex-auto">
                 <GuaImage images={props.gua.image}/>
             </div>
         </div>
+        </Link>
     )
 }
 

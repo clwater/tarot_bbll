@@ -20,7 +20,7 @@ export const supabase = createClient(
 
 export async function getGuas() {
     const {data, error}: { data: GuaSimpleEntity[] | null, error: any } = await supabase.from('zy')
-        .select('id, name, image, name_detail')
+        .select('id, name,index,  image, name_detail')
     // console.log(data)
 
     if (error) {
