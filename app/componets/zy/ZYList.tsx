@@ -1,8 +1,9 @@
 'use client';
 
-import {supabase} from "@/app/utils/API";
 import React from "react";
 import {GuaImage} from "@/app/componets/zy/GuaImage";
+
+let API = require('@/app/utils/API');
 
 function ZYItem(props: { gua: GuaSimpleEntity }) {
     return (
@@ -17,27 +18,24 @@ function ZYItem(props: { gua: GuaSimpleEntity }) {
 
 export default async function ZYList() {
 
-    const [isProcessing, setIsProcessing] = React.useState(false);
-
-
-    const {data, error}: { data: GuaSimpleEntity[] | null, error: any } = await supabase.from('zy')
-        .select('id, name, image, name_detail')
-
+    const guas = await API.getGuas();
 
     return (
         <>{
-            data === null ?
-                <div>Loading
-                    ....
-                </div>
-                :
+            guas != null ?
+
                 <div className="grid grid-cols-3 gap-4 px-4">
                     {
-                        data.map((gua: GuaSimpleEntity, index: number) => (
+                        guas.map((gua: GuaSimpleEntity, index: number) => (
                             <ZYItem gua={gua} key={index}/>
                         ))
                     }
                 </div>
+                :
+                <div>Loading
+                    ....
+                </div>
+
         }
 
         </>
