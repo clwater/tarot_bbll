@@ -19,7 +19,6 @@ export const supabase = createClient(
 
 
 export async function getGuas() {
-    console.log('getGuas')
     const {data, error}: { data: GuaSimpleEntity[] | null, error: any } = await supabase.from('zy')
         .select('id, name, image, name_detail')
     // console.log(data)
@@ -30,4 +29,52 @@ export async function getGuas() {
         return data
     }
 
+}
+
+export async function getGua(guaIndex: number) {
+    console.log(guaIndex)
+    // @ts-ignore
+    const {data, error}: { data: GuaEntity | null, error: any } = await supabase.from('zy')
+        .select('id, name, image, name_detail')
+        .eq('index', guaIndex)
+
+    console.log(getGua)
+
+    if (error) {
+        return {}
+    }else {
+        // @ts-ignore
+        if (data != null && data[0] != null){
+            // @ts-ignore
+            return data[0]
+        }else {
+            return {}
+        }
+    }
+}
+
+export async function getGuaExplain(guaIndex: number) {
+    const {data, error}: { data: GuaExplainsEntity[] | null, error: any } = await supabase.from('zy_gua_explain')
+        .select('*')
+        .eq('gua_index', guaIndex)
+    // console.log(data)
+
+    if (error) {
+        return []
+    }else {
+        return data
+    }
+}
+
+export async function getGuaExplainItem(guaIndex: number) {
+    const {data, error}: { data: GuaExplainsItemEntity[] | null, error: any } = await supabase.from('guas_explain_item')
+        .select('*')
+        .eq('gua_index', guaIndex)
+    // console.log(data)
+
+    if (error) {
+        return []
+    }else {
+        return data
+    }
 }

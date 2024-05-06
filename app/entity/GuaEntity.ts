@@ -14,6 +14,7 @@ interface GuaExplainsEntity{
 }
 
 interface GuaExplainsItemEntity{
+    gua_explain_index: number;
     type: number;
     explain: string;
 }

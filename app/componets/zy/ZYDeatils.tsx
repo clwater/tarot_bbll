@@ -1,36 +1,36 @@
 'use client';
 
-// import {supabase} from "@/app/utils/API";
 import React from "react";
-import {GuaImage} from "@/app/componets/zy/GuaImage";
+import {json} from "node:stream/consumers";
 
-
+let API = require('@/app/utils/API');
 
 export default async function ZYDetails(props: { guaIndex: string}) {
 
-    // const [isProcessing, setIsProcessing] = React.useState(false);
-    //
-    //
-    // const {data, error}: { data: GuaExplainsEntity[] | null, error: any } = await supabase.from('zy_gua_explain')
-    //     .select('*')
-    //     .eq('gua_index', props.guaIndex)
-    //
-    // if (data != null) {
-    //     console.log(data)
-    // }
+    const getGua: GuaEntity = await API.getGua(parseInt(props.guaIndex));
+
+    const getGuaExplain = await API.getGuaExplain(parseInt(props.guaIndex));
+    const getGuaExplainItem = await API.getGuaExplainItem(parseInt(props.guaIndex));
 
 
-    // const {data2: data2}: { data2: GuaExplainsItemEntity[] | null, error: any } = await supabase.from('guas_explain_item')
-    //     .select('*')
-    //     .eq('gua_index', props.guaIndex)
-    //
-    // if (data2 != null) {
-    //     console.log(data2)
-    // }
 
+    // @ts-ignore
     return (
         <div>
-            {props.guaIndex}
+            {getGua.name}
+            {getGua.name_detail}
+            {getGua.image}
+
+            {
+                getGuaExplain.map((item: GuaExplainsEntity) => {
+                    return (
+                        <div key={item.type}>
+                            {item.base}
+                            {item.explain}
+                        </div>
+                    )
+                })
+            }
         </div>
     )
 }
