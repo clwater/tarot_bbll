@@ -14,7 +14,7 @@ export default function ZhouYi() {
         >
             <Header routeType={2}/>
 
-            <Link className="w-full" href="/zy/gua">
+            <Link className="w-full" href="/zy/yg">
                 <Card className="m-4 p-4 flex flex-row w-full">
                     <p className="text-2xl flex-1">启卦</p>
                     <div className="flex-none text-center ">
