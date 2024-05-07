@@ -3,6 +3,7 @@ interface GuaEntity {
     name: string;
     image: string;
     name_detail: string;
+    desc_detail: string;
     explains: GuaExplainsEntity[];
 }
 

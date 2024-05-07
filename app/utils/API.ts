@@ -34,7 +34,7 @@ export async function getGuas() {
 export async function getGua(guaIndex: number) {
     // @ts-ignore
     const {data, error}: { data: GuaEntity | null, error: any } = await supabase.from('zy')
-        .select('id, name, image, name_detail')
+        .select('id, name, image, name_detail, desc_detail')
         .eq('index', guaIndex)
 
     // console.log(getGua)

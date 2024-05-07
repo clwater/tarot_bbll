@@ -13,7 +13,7 @@ function ZYItem(props: { gua: GuaSimpleEntity }) {
         <div className="w-full p-2 flex flex-col">
             <p className="flex-none w-full text-center text-white">{props.gua.name}<small>({props.gua.name_detail})</small></p>
             <div className="flex-auto">
-                <GuaImage images={props.gua.image}/>
+                <GuaImage images={props.gua.image} size={1}/>
             </div>
         </div>
         </Link>
