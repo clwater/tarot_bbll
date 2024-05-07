@@ -33,7 +33,7 @@ export async function getGuas() {
 
 export async function getGua(guaIndex: number) {
     // @ts-ignore
-    const {data, error}: { data: GuaEntity | null, error: any } = await supabase.from('zy')
+    const {data, error}: { data: YaoEntity | null, error: any } = await supabase.from('zy')
         .select('id, name, image, name_detail, desc_detail')
         .eq('index', guaIndex)
 
@@ -66,6 +66,32 @@ export async function getGuaExplain(guaIndex: number) {
 
 export async function getGuaExplainItem(guaIndex: number) {
     const {data, error}: { data: GuaExplainsItemEntity[] | null, error: any } = await supabase.from('guas_explain_item')
+        .select('*')
+        .eq('gua_index', guaIndex)
+    // console.log(data)
+
+    if (error) {
+        return []
+    }else {
+        return data
+    }
+}
+
+export async function getYao(guaIndex: number) {
+    const {data, error}: { data: YaoEntity[] | null, error: any } = await supabase.from('zy_yao')
+        .select('*')
+        .eq('gua_index', guaIndex)
+    // console.log(data)
+
+    if (error) {
+        return []
+    }else {
+        return data
+    }
+}
+
+export async function getYaoExplain(guaIndex: number) {
+    const {data, error}: { data: YaoExplainsEntity[] | null, error: any } = await supabase.from('zy_yao_explain')
         .select('*')
         .eq('gua_index', guaIndex)
     // console.log(data)
