@@ -3,12 +3,12 @@ import React, {Suspense} from "react";
 import {CircularProgress} from "@nextui-org/react";
 
 
-export default function ZYDetailsLoading() {
+export default function Loading() {
 
 
     return (
 
-        <div className="flex h-lvh items-center">
+        <div className="flex min-h-10 items-center">
             <div className="text-center inline-block my-auto mx-auto">
                 <CircularProgress aria-label="Loading..." className="justify-center "/>
             </div>

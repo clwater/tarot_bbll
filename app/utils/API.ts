@@ -32,13 +32,12 @@ export async function getGuas() {
 }
 
 export async function getGua(guaIndex: number) {
-    console.log(guaIndex)
     // @ts-ignore
     const {data, error}: { data: GuaEntity | null, error: any } = await supabase.from('zy')
         .select('id, name, image, name_detail')
         .eq('index', guaIndex)
 
-    console.log(getGua)
+    // console.log(getGua)
 
     if (error) {
         return {}
@@ -57,7 +56,6 @@ export async function getGuaExplain(guaIndex: number) {
     const {data, error}: { data: GuaExplainsEntity[] | null, error: any } = await supabase.from('zy_gua_explain')
         .select('*')
         .eq('gua_index', guaIndex)
-    // console.log(data)
 
     if (error) {
         return []
