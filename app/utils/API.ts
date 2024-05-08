@@ -112,6 +112,21 @@ export async function getTarotSimple() {
     }
 }
 
+
+export async function getTarots(cardIds: number[]) {
+    const {data, error}: { data: TarotEntity[] | null, error: any } =  await supabase.from('tarot')
+        .select('*')
+        .in('index', cardIds)
+
+    // console.log(data)
+    if (error) {
+        return []
+    }else {
+        return data
+    }
+}
+
+
 export async function getTarotData(index: number) {
     const {data, error}: { data: TarotEntity[] | null, error: any } =  await supabase.from('tarot')
         .select('*')

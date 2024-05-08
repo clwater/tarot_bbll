@@ -15,8 +15,9 @@ import {SmallTarotItem} from "@/app/componets/tarot/SmallTarotItem";
 
 
 let DivineUtils = require('@/app/utils/DivineUtils');
+let API = require('@/app/utils/API');
 
-export const DivineParent = ({type: id = '0', randomId: randomId = '0'}) => {
+export  async function  DivineParent({type: id = '0', randomId: randomId = '0'}) {
     const router = useRouter()
     const url = `/tarot/divine/item?id=${id}&randomId=${Math.floor(Math.random() * 1000)}`;
     const _url = `/tarot/divine/item?id=${id}&randomId=${Math.floor(Math.random() * 1000)}`;
@@ -28,6 +29,9 @@ export const DivineParent = ({type: id = '0', randomId: randomId = '0'}) => {
     const matrix = matrixItem.matrix
     const {isOpen, onOpen, onClose} = useDisclosure();
     const [checkId, setCheckId] = React.useState(0);
+
+    const randomSet: Set<number> = new Set()
+    const cardIds: number[] = []
 
 
     let _openMap = new Map()
@@ -66,11 +70,23 @@ export const DivineParent = ({type: id = '0', randomId: randomId = '0'}) => {
         return x - Math.floor(x);
     }
 
+    const matrixMap:Map<number, number> = new Map()
+
+
     function updateMatrix() {
         matrix.map((row: number[], rowIndex: number) => {
                 row.map((element, columnIndex) => {
                     if (element === 0) return
+                    let nextCard = Math.floor(random() * 78) + 1
+                    while (randomSet.has(nextCard)) {
+                        nextCard = Math.floor(random() * 78) + 1
+                    }
+                    randomSet.add(nextCard)
                     matrix[rowIndex][columnIndex] = Math.floor(random() * 78) + 1
+
+                    cardIds.push(matrix[rowIndex][columnIndex])
+                    matrixMap.set(matrix[rowIndex][columnIndex], rowIndex * 10 + columnIndex)
+
                     if (random() < 0.5) {
                         matrix[rowIndex][columnIndex] = -1 * matrix[rowIndex][columnIndex]
                     }
@@ -80,6 +96,12 @@ export const DivineParent = ({type: id = '0', randomId: randomId = '0'}) => {
     }
 
     updateMatrix()
+    const tarots = await API.getTarots(cardIds)
+
+    function getTarot(id: number){
+        // return tarots.filter()
+    }
+
 
     return (
         <div
@@ -95,7 +117,7 @@ export const DivineParent = ({type: id = '0', randomId: randomId = '0'}) => {
                                      className="flex-1"
                                      onClick={() => handleOpen(rowIndex, columnIndex)}
                                 >
-                                    <DivineItem cardId={element} isOpen={open.get(rowIndex * 10 + columnIndex)}/>
+                                    <DivineItem cardId={element} isOpen={open.get(rowIndex * 10 + columnIndex)} tarot={getTarot(rowIndex * 10 + columnIndex)}/>
                                 </div>
                             ))
                         }
