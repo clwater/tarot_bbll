@@ -36,7 +36,6 @@ export async function getGua(guaIndex: number) {
         .select('id, name, image, name_detail, desc_detail')
         .eq('index', guaIndex)
 
-    // console.log(getGua)
 
     if (error) {
         return {}
@@ -67,7 +66,6 @@ export async function getGuaExplainItem(guaIndex: number) {
     const {data, error}: { data: GuaExplainsItemEntity[] | null, error: any } = await supabase.from('guas_explain_item')
         .select('*')
         .eq('gua_index', guaIndex)
-    // console.log(data)
 
     if (error) {
         return []
@@ -80,7 +78,6 @@ export async function getYao(guaIndex: number) {
     const {data, error}: { data: YaoEntity[] | null, error: any } = await supabase.from('zy_yao')
         .select('*')
         .eq('gua_index', guaIndex)
-    // console.log(data)
 
     if (error) {
         return []
@@ -93,7 +90,6 @@ export async function getYaoExplain(guaIndex: number) {
     const {data, error}: { data: YaoExplainsEntity[] | null, error: any } = await supabase.from('zy_yao_explain')
         .select('*')
         .eq('gua_index', guaIndex)
-    // console.log(data)
 
     if (error) {
         return []
@@ -118,7 +114,7 @@ export async function getTarots(cardIds: number[]) {
         .select('*')
         .in('index', cardIds)
 
-    // console.log(data)
+    console.log(data, error)
     if (error) {
         return []
     }else {

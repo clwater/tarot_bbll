@@ -1,21 +1,61 @@
 'use client';
-import React from "react";
+import React, {useState} from "react";
 
 import {
     Button,
-    useDisclosure, Link
+    useDisclosure, Link, Image
 } from "@nextui-org/react";
 
-import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter} from "@nextui-org/react";
-
-
-import {DivineItem} from "@/app/componets/tarot/DivineItem";
 import {useRouter} from "next/navigation";
-import {SmallTarotItem} from "@/app/componets/tarot/SmallTarotItem";
+import cardBack from "@/app/assets/image/card_back.jpg";
+import {getTarotSimple} from "@/app/utils/API";
 
 
 let DivineUtils = require('@/app/utils/DivineUtils');
 let API = require('@/app/utils/API');
+
+
+// export const DivineItem = ({isOpen, isDown}:{isOpen: boolean, isDown: boolean}) => {
+//
+//
+//
+//     // let card = TarotManager.getTarotData(cardId)
+//
+//     // card = isRev ? TarotManager.getTarotData(-1 * cardId) : card
+//
+//     const _revClass = isDown ? "rotate-180" : ""
+//
+//
+//     return (
+//         <div className="text-white">
+//             {
+//                 <div>
+//                     <Image
+//                         removeWrapper
+//                         alt="Card background"
+//                         className={isOpen ? `${_revClass} bg-cover` : "bg-cover"}
+//                         src={isOpen ? "https://clwater-halo.oss-cn-shanghai.aliyuncs.com/tarot/major-02.jpg" : cardBack.src}
+//                         // src={isOpen ? tarot.image : cardBack.src}
+//                     />
+//                     <p className=" text-center max">
+//                         <small>
+//                             {
+//                                 // isOpen ? `${tarot.name}` : ""
+//                                 isOpen ? "name" : ""
+//                             }
+//                         </small>
+//                     </p>
+//
+//                 </div>
+//             }
+//
+//         </div>
+//     )
+// }
+
+
+
+
 
 export  async function  DivineParent({type: id = '0', randomId: randomId = '0'}) {
     const router = useRouter()
@@ -27,80 +67,34 @@ export  async function  DivineParent({type: id = '0', randomId: randomId = '0'})
 
     const matrixItem: CardArrayItem = DivineUtils.get(id)
     const matrix = matrixItem.matrix
-    const {isOpen, onOpen, onClose} = useDisclosure();
-    const [checkId, setCheckId] = React.useState(0);
-
-    const randomSet: Set<number> = new Set()
-    const cardIds: number[] = []
+    await API.getTarotSimple();
+// const [open, setOpen] = useAsyncState(false)
 
 
-    let _openMap = new Map()
-
-    matrix.map((row: number[], rowIndex: number) => {
-            row.map((element, columnIndex) => {
-                if (element === 0) return
-                _openMap.set(rowIndex * 10 + columnIndex, false)
-            })
-        }
-    )
-
-    const [open, setOpen] = React.useState(_openMap)
-
-    const handleOpen = (x: number, y: number) => {
-
-        let _id = matrix[x][y]
-        if (_id < 0) _id = -1 * _id
-        setCheckId(_id)
-
-        if (open.get(x * 10 + y)) {
-            onOpen()
-            return
-        } else {
-            setOpen(prevState => {
-                prevState.set(x * 10 + y, true)
-                return prevState
-            })
-        }
-    }
-
-    let seed = parseInt(randomId)
-
-    function random() {
-        const x = Math.sin(seed++) * 10000;
-        return x - Math.floor(x);
-    }
-
-    const matrixMap:Map<number, number> = new Map()
-
-
-    function updateMatrix() {
-        matrix.map((row: number[], rowIndex: number) => {
-                row.map((element, columnIndex) => {
-                    if (element === 0) return
-                    let nextCard = Math.floor(random() * 78) + 1
-                    while (randomSet.has(nextCard)) {
-                        nextCard = Math.floor(random() * 78) + 1
-                    }
-                    randomSet.add(nextCard)
-                    matrix[rowIndex][columnIndex] = Math.floor(random() * 78) + 1
-
-                    cardIds.push(matrix[rowIndex][columnIndex])
-                    matrixMap.set(matrix[rowIndex][columnIndex], rowIndex * 10 + columnIndex)
-
-                    if (random() < 0.5) {
-                        matrix[rowIndex][columnIndex] = -1 * matrix[rowIndex][columnIndex]
-                    }
-                })
-            }
-        )
-    }
-
-    updateMatrix()
-    const tarots = await API.getTarots(cardIds)
-
-    function getTarot(id: number){
-        // return tarots.filter()
-    }
+    // let _openMap = new Map()
+    //
+    // matrix.map((row: number[], rowIndex: number) => {
+    //         row.map((element, columnIndex) => {
+    //             if (element === 0) return
+    //             _openMap.set(rowIndex * 10 + columnIndex, false)
+    //         })
+    //     }
+    // )
+    //
+    // const [open, setOpen] = React.useState(_openMap)
+    // const handleOpen = (x: number, y: number) => {
+    //
+    //
+    //     if (open.get(x * 10 + y)) {
+    //         // onOpen()
+    //         return
+    //     } else {
+    //         setOpen(prevState => {
+    //             prevState.set(x * 10 + y, true)
+    //             return prevState
+    //         })
+    //     }
+    // }
 
 
     return (
@@ -115,9 +109,11 @@ export  async function  DivineParent({type: id = '0', randomId: randomId = '0'})
                             row.map((element, columnIndex) => (
                                 <div key={rowIndex * 10 + columnIndex}
                                      className="flex-1"
-                                     onClick={() => handleOpen(rowIndex, columnIndex)}
+                                     // onClick={() => handleOpen(rowIndex, columnIndex)}
                                 >
-                                    <DivineItem cardId={element} isOpen={open.get(rowIndex * 10 + columnIndex)} tarot={getTarot(rowIndex * 10 + columnIndex)}/>
+                                    1
+                                    {/*<DivineItem cardId={element} isOpen={open.get(rowIndex * 10 + columnIndex)} tarot={getTarot(rowIndex * 10 + columnIndex)}/>*/}
+                                    {/*<DivineItem  isOpen={true} isDown={true}/>*/}
                                 </div>
                             ))
                         }
@@ -127,45 +123,7 @@ export  async function  DivineParent({type: id = '0', randomId: randomId = '0'})
 
             </div>
 
-            <Link href={_url} className="w-full px-4">
-                <Button onClick={() => {
-                    // refresh()
-                    updateMatrix()
-                }}
-                        className="w-full"
-                >
-                    <b>Divine</b>
-                </Button>
-            </Link>
 
-            <Modal
-                isOpen={isOpen}
-                onClose={onClose}
-                hideCloseButton={true}
-                className="bg-gray-900 text-white/90 "
-            >
-                <ModalContent>
-                    {(onClose) => (
-                        <>
-                            <ModalBody>
-                                <SmallTarotItem id={checkId.toString()}/>
-                            </ModalBody>
-                            <ModalFooter className="justify-between">
-                                <Link href={`/tarot/tarot/item?id=${checkId}`} rel="noopener noreferrer"
-                                      target="_blank">
-                                    <Button color="secondary" onClick={onClose}>
-                                        <p>Detail</p>
-                                    </Button>
-                                </Link>
-
-                                <Button color="primary" onPress={onClose}>
-                                    <p>Close</p>
-                                </Button>
-                            </ModalFooter>
-                        </>
-                    )}
-                </ModalContent>
-            </Modal>
         </div>
 
     )

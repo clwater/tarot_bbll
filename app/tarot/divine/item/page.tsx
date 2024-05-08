@@ -4,6 +4,7 @@ import {Header} from "@/app/componets/Header";
 import React, {Suspense} from "react";
 import {useSearchParams} from "next/navigation";
 import {DivineParent} from "@/app/componets/tarot/DivineParent";
+import Loading from "@/app/componets/loading";
 
 function Item() {
     const searchParams = useSearchParams();
@@ -17,16 +18,16 @@ function Item() {
         randomId = '0'
     }
 
-    return <DivineParent type={cardArrayId} randomId={randomId}/>
+
+    return (<DivineParent type={cardArrayId} randomId={randomId}/>)
 }
 
 export default function Divine() {
 
-
     return (
         <div>
             <Header routeType={1}/>
-            <Suspense>
+            <Suspense fallback={<Loading/>}>
                 <Item/>
             </Suspense>
 

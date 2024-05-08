@@ -17,8 +17,6 @@ export default async function TarotItem({id = '1'}) {
 
     const tarot =  await API.getTarotData(parseInt(id));
 
-    console.log(tarot)
-
     const explains: TarotExplainEntity[] = await API.getTarotExplain(parseInt(id));
 
 
