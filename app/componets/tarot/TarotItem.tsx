@@ -1,3 +1,5 @@
+'use client';
+
 // import {useRouter, useSearchParams} from "next/navigation";
 import React from "react";
 import {Accordion, AccordionItem, Image, Textarea} from "@nextui-org/react";
@@ -5,12 +7,18 @@ import {Chip} from "@nextui-org/chip";
 import {getTarotExplain} from "@/app/utils/API";
 import {Divider} from "@nextui-org/divider";
 
-
 let API = require('@/app/utils/API');
 
-export async function TarotItem({id = '1'}) {
+const explainMap: { [key: number]: string } = {
+    0: "common",
+}
+
+export default async function TarotItem({id = '1'}) {
 
     const tarot =  await API.getTarotData(parseInt(id));
+
+    console.log(tarot)
+
     const explains: TarotExplainEntity[] = await API.getTarotExplain(parseInt(id));
 
 
@@ -72,7 +80,7 @@ export async function TarotItem({id = '1'}) {
                         {
                             explainsUp.map((explain, index) => (
                                 <div key={index}>
-                                    <p>{explain.explain_type}</p>
+                                    <p>{explainMap[parseInt(explain.type)]}</p>
                                     <p>{explain.desc}</p>
                                     {
                                         index === explainsUp.length - 1 ? "" : <Divider className="my-1"/>
@@ -84,14 +92,14 @@ export async function TarotItem({id = '1'}) {
                     </AccordionItem>
 
                     <AccordionItem
-                        key="2"
+                        key="3"
                         aria-label="Down"
                         title="Down"
                     >
                         {
                             explainsRev.map((explain, index) => (
                                 <div key={index}>
-                                    <p>{explain.explain_type}</p>
+                                    <p>{explainMap[parseInt(explain.type)]}</p>
                                     <p>{explain.desc}</p>
                                     {
                                         index === explainsRev.length - 1 ? "" : <Divider className="my-1"/>

@@ -1,9 +1,9 @@
 'use client';
 import React, {Suspense} from "react";
-import {TarotItem} from "@/app/componets/tarot/TarotItem";
 import {Header} from "@/app/componets/Header";
 import {useSearchParams} from "next/navigation";
 import Loading from "@/app/componets/loading";
+import TarotItem from "@/app/componets/tarot/TarotItem";
 
 function Item() {
     const searchParams = useSearchParams();
