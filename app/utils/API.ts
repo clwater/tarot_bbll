@@ -21,7 +21,6 @@ export const supabase = createClient(
 export async function getGuas() {
     const {data, error}: { data: GuaSimpleEntity[] | null, error: any } = await supabase.from('zy')
         .select('id, name,index,  image, name_detail')
-    // console.log(data)
 
     if (error) {
         return []
@@ -95,6 +94,17 @@ export async function getYaoExplain(guaIndex: number) {
         .select('*')
         .eq('gua_index', guaIndex)
     // console.log(data)
+
+    if (error) {
+        return []
+    }else {
+        return data
+    }
+}
+
+export async function getTarotSimple() {
+    const {data, error}: { data: TarotSimpleEntity[] | null, error: any } = await supabase.from('tarot')
+        .select('index, type, name, image_small, suit')
 
     if (error) {
         return []

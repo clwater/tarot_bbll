@@ -10,5 +10,5 @@ interface CardEntity {
     desc: string;
     image:string;
     image_small:string;
-    suit: String;
+    suit: string;
 }

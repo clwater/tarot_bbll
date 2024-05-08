@@ -7,7 +7,6 @@ import {Link} from "@nextui-org/react";
 let API = require('@/app/utils/API');
 
 function ZYItem(props: { gua: GuaSimpleEntity }) {
-    console.log(props.gua)
     return (
         <Link href={`/zy/zy/item?id=${props.gua.index}`} className="">
         <div className="w-full p-2 flex flex-col">
