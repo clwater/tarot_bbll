@@ -2,21 +2,15 @@ import {Header} from "@/app/componets/Header";
 import {Button, Card, Image, Link} from "@nextui-org/react";
 import React from "react";
 import {ArrowRight} from "@/app/componets/Icons/ArrowRight";
+import {getRandImage} from "@/app/utils/TarotManager";
+import {GuaImage} from "@/app/componets/zy/GuaImage";
 
 let TarotManager = require('@/app/utils/TarotManager');
+let RandomUtils = require('@/app/utils/RandomUtils');
 
 const Home = () => {
-
-    let seed = Math.floor(Date.now())
-
-    function random() {
-        const x = Math.sin(seed++) * 10000;
-        return x - Math.floor(x);
-    }
-
-    const randomTaro = Math.floor(random() * 78) + 1
-    const cardImage = TarotManager.getTarotData(randomTaro).image
-
+    const cardImage = TarotManager.getRandImage()
+    const guaImage = RandomUtils.getRandomGuas()
 
     return (
         <div
@@ -56,12 +50,7 @@ const Home = () => {
             <Card className="col-span-12 p-4 flex-row mt-10">
 
                 <div className="w-full">
-                    <div className="bg-white w-full">&nbsp;</div>
-                    <div className="bg-white w-full my-2">&nbsp;</div>
-                    <div className="bg-white w-full ">&nbsp;</div>
-                    <div className="bg-white w-full mt-4">&nbsp;</div>
-                    <div className="bg-white w-full my-2">&nbsp;</div>
-                    <div className="bg-white w-full">&nbsp;</div>
+                    <GuaImage images={guaImage} size={2}/>
                 </div>
 
                 <div className="row-span-6 flex-col w-full flex">
