@@ -9,23 +9,6 @@ let API = require('@/app/utils/API');
 
 export const TarotListItem = ({tarot}: { tarot: TarotSimpleEntity }) => {
     const url = `/tarot/tarot/item?id=${tarot.index}`;
-
-    let badgeColor = 'outline-gray-500'
-    switch (tarot.suit) {
-        case 'pentacles' :
-            badgeColor = 'outline-orange-800';
-            break
-        case 'cups' :
-            badgeColor = 'outline-blue-800';
-            break
-        case 'wands' :
-            badgeColor = 'outline-red-800';
-            break
-        case 'swords' :
-            badgeColor = 'outline-green-800';
-            break
-    }
-
     return (
 
         <Link href={url} key={tarot.index}>
@@ -55,10 +38,8 @@ export const TarotListItem = ({tarot}: { tarot: TarotSimpleEntity }) => {
 
 export default async function TarotList() {
     const tarots = await API.getTarotSimple();
-
     return (
         <div>
-
             <p className="px-4 py-4 text-2xl">Major</p>
             <div className="grid grid-cols-3 gap-4 px-4">
                 {

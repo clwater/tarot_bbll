@@ -3,6 +3,7 @@ import React, {Suspense} from "react";
 import {TarotItem} from "@/app/componets/tarot/TarotItem";
 import {Header} from "@/app/componets/Header";
 import {useSearchParams} from "next/navigation";
+import Loading from "@/app/componets/loading";
 
 function Item() {
     const searchParams = useSearchParams();
@@ -20,7 +21,7 @@ export default function TarotParent() {
     return (
             <div>
                 <Header routeType={2}/>
-                <Suspense>
+                <Suspense fallback={<Loading/>}>
                     <Item/>
                 </Suspense>
             </div>

@@ -1,17 +1,26 @@
 // import {useRouter, useSearchParams} from "next/navigation";
 import React from "react";
-import {Image, Textarea} from "@nextui-org/react";
+import {Accordion, AccordionItem, Image, Textarea} from "@nextui-org/react";
 import {Chip} from "@nextui-org/chip";
+import {getTarotExplain} from "@/app/utils/API";
+import {Divider} from "@nextui-org/divider";
 
 
-let TarotManager = require('@/app/utils/TarotManager');
+let API = require('@/app/utils/API');
 
-export function TarotItem({id = '1'}) {
+export async function TarotItem({id = '1'}) {
 
-    const card = TarotManager.getTarotData(parseInt(id));
+    const tarot =  await API.getTarotData(parseInt(id));
+    const explains: TarotExplainEntity[] = await API.getTarotExplain(parseInt(id));
+
+
+    const explainsUp = explains.filter((explain) => explain.explain_type === 'up')
+    const explainsRev = explains.filter((explain) => explain.explain_type === 'rev')
+
+
 
     let badgeColor = 'bg-gray-500'
-    switch (card.suit){
+    switch (tarot.suit){
         case 'pentacles' : badgeColor = 'bg-orange-800'; break
         case 'cups' : badgeColor = 'bg-blue-800'; break
         case 'wands' : badgeColor = 'bg-red-800'; break
@@ -30,12 +39,12 @@ export function TarotItem({id = '1'}) {
                     alt="Woman listing to music"
                     className="object-cover"
                     height={320}
-                    src={card.image}
+                    src={tarot.image}
                     width={200}
                 />
             </div>
             <div className="px-8 py-8">
-                <b>{card.name}</b>
+                <b>{tarot.name}</b>
                 <br/>
 
                 <Chip
@@ -43,40 +52,55 @@ export function TarotItem({id = '1'}) {
                         base: badgeColor,
                         content: "drop-shadow shadow-black text-white",
                     }}
-                    variant="shadow" size="sm">{card.type === 'major' ? 'Major': card.suit}</Chip>
+                    variant="shadow" size="sm">{tarot.type === 'major' ? 'Major': tarot.suit}</Chip>
 
-                <br/>
-                <br/>
 
-                <Textarea
-                    isReadOnly
-                    label={<b>Mean up:</b>}
-                    variant="bordered"
-                    labelPlacement="outside"
-                    placeholder=""
-                    defaultValue={card.meaning_up}
-                    className="w-full"
-                />
+                <Accordion defaultExpandedKeys={"1"}>
+                    <AccordionItem
+                        key="1"
+                        aria-label="Desc"
+                        title="Desc"
+                    >
+                        {tarot.desc}
+                    </AccordionItem>
 
-                <Textarea
-                    isReadOnly
-                    label={<b>Mean rev:</b>}
-                    variant="bordered"
-                    labelPlacement="outside"
-                    placeholder=""
-                    defaultValue={card.meaning_rev}
-                    className="w-full"
-                />
+                    <AccordionItem
+                        key="2"
+                        aria-label="Up"
+                        title="Up"
+                    >
+                        {
+                            explainsUp.map((explain, index) => (
+                                <div key={index}>
+                                    <p>{explain.explain_type}</p>
+                                    <p>{explain.desc}</p>
+                                    {
+                                        index === explainsUp.length - 1 ? "" : <Divider className="my-1"/>
+                                    }
+                                </div>
 
-                <Textarea
-                    isReadOnly
-                    label={<b>Desc:</b>}
-                    variant="bordered"
-                    labelPlacement="outside"
-                    placeholder=""
-                    defaultValue={card.desc}
-                    className="w-full"
-                />
+                            ))
+                        }
+                    </AccordionItem>
+
+                    <AccordionItem
+                        key="2"
+                        aria-label="Down"
+                        title="Down"
+                    >
+                        {
+                            explainsRev.map((explain, index) => (
+                                <div key={index}>
+                                    <p>{explain.explain_type}</p>
+                                    <p>{explain.desc}</p>
+                                    {
+                                        index === explainsRev.length - 1 ? "" : <Divider className="my-1"/>
+                                    }
+                                </div>
+                            ))
+                        }
+                    </AccordionItem>
+                </Accordion>
 
 
             </div>

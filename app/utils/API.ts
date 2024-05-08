@@ -105,6 +105,35 @@ export async function getYaoExplain(guaIndex: number) {
 export async function getTarotSimple() {
     const {data, error}: { data: TarotSimpleEntity[] | null, error: any } = await supabase.from('tarot')
         .select('index, type, name, image_small, suit')
+    if (error) {
+        return []
+    }else {
+        return data
+    }
+}
+
+export async function getTarotData(index: number) {
+    const {data, error}: { data: TarotEntity[] | null, error: any } =  await supabase.from('tarot')
+        .select('*')
+        .eq('index', index)
+
+    if (error) {
+        return {}
+    }else {
+        // @ts-ignore
+        if (data != null && data[0] != null){
+            // @ts-ignore
+            return data[0]
+        }else {
+            return {}
+        }
+    }
+}
+
+export async function getTarotExplain(index: number) {
+    const {data, error}: { data: TarotExplainEntity[] | null, error: any } = await supabase.from('tarot_explain')
+        .select('*')
+        .eq('tarot_index', index)
 
     if (error) {
         return []
