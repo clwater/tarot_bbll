@@ -5,6 +5,9 @@ import React, {Suspense} from "react";
 import {useSearchParams} from "next/navigation";
 import {DivineParent} from "@/app/componets/tarot/DivineParent";
 import Loading from "@/app/componets/loading";
+import {DivineParentRequest} from "@/app/componets/tarot/DivineParentRequest";
+
+// https://nextjs.org/docs/pages/building-your-application/data-fetching/get-server-side-props
 
 function Item() {
     const searchParams = useSearchParams();
@@ -19,7 +22,7 @@ function Item() {
     }
 
 
-    return (<DivineParent type={cardArrayId} randomId={randomId}/>)
+    return (<DivineParentRequest type={cardArrayId} randomId={randomId}/>)
 }
 
 export default function Divine() {

@@ -101,7 +101,7 @@ export async function getYaoExplain(guaIndex: number) {
 export async function getTarotSimple() {
     const {data, error}: { data: TarotSimpleEntity[] | null, error: any } = await supabase.from('tarot')
         .select('index, type, name, image_small, suit')
-    if (error) {
+    if (error || data === null) {
         return []
     }else {
         return data
@@ -114,7 +114,7 @@ export async function getTarots(cardIds: number[]) {
         .select('*')
         .in('index', cardIds)
 
-    console.log(data, error)
+    // console.log(data, error)
     if (error) {
         return []
     }else {
