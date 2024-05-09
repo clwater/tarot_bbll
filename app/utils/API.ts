@@ -109,10 +109,10 @@ export async function getTarotSimple() {
 }
 
 
-export async function getTarots(cardIds: number[]) {
+export async function getTarots(tarotsId: number[]) {
     const {data, error}: { data: TarotEntity[] | null, error: any } =  await supabase.from('tarot')
         .select('*')
-        .in('index', cardIds)
+        .in('index', tarotsId)
 
     // console.log(data, error)
     if (error) {
@@ -145,6 +145,18 @@ export async function getTarotExplain(index: number) {
     const {data, error}: { data: TarotExplainEntity[] | null, error: any } = await supabase.from('tarot_explain')
         .select('*')
         .eq('tarot_index', index)
+
+    if (error) {
+        return []
+    }else {
+        return data
+    }
+}
+
+export async function getTarotExplains(tarotsId: number[]) {
+    const {data, error}: { data: TarotExplainEntity[] | null, error: any } = await supabase.from('tarot_explain')
+        .select('*')
+        .in('tarot_index', tarotsId)
 
     if (error) {
         return []

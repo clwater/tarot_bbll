@@ -58,12 +58,13 @@ export async function DivineParentRequest({type: id = '0', randomId: randomId = 
 
 
     const tarots: TarotEntity[] = await API.getTarots(requestTarotIds)
+    const tarotExplains: TarotExplainEntity[] = await API.getTarotExplains(requestTarotIds)
 
     return (
         <div
             className="w-full h-full"
         >
-            <DivineParent matrix={matrix} tarots={tarots}/>
+            <DivineParent matrix={matrix} tarots={tarots} tarotExplains={tarotExplains}/>
 
             <Link href={_url} className="w-full px-4">
                 <Button onClick={() => {

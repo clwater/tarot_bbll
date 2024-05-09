@@ -1,9 +1,10 @@
 'use client';
 import React from "react";
 
-import {Image} from "@nextui-org/react";
+import {Image, useDisclosure} from "@nextui-org/react";
 
 import cardBack from "@/app/assets/image/card_back.jpg";
+import {Modal, ModalBody, ModalContent} from "@nextui-org/modal";
 
 
 export const DivineItem = ({matrixId, isOpen, isDown, tarot}: {
@@ -46,7 +47,7 @@ export const DivineItem = ({matrixId, isOpen, isDown, tarot}: {
 }
 
 
-export function DivineParent({matrix, tarots}: { matrix: number[][], tarots: TarotEntity[] }) {
+export function DivineParent({matrix, tarots, tarotExplains}: { matrix: number[][], tarots: TarotEntity[], tarotExplains: TarotExplainEntity[]}) {
 
     let _openMap = new Map()
 
@@ -62,7 +63,7 @@ export function DivineParent({matrix, tarots}: { matrix: number[][], tarots: Tar
     const [open, setOpen] = React.useState(_openMap);
     const handleOpen = (x: number, y: number) => {
         if (open.get(x * 10 + y)) {
-            // onOpen()
+             onOpen()
             return
         } else {
             setOpen(prevState => {
@@ -74,6 +75,9 @@ export function DivineParent({matrix, tarots}: { matrix: number[][], tarots: Tar
     }
 
 
+    const {isOpen, onOpen, onClose} = useDisclosure();
+
+
     function getTarot(rowIndex: number, columnIndex: number) {
         let positionCardId = matrix[rowIndex][columnIndex]
         if (positionCardId < 0) positionCardId = -1 * positionCardId
@@ -81,6 +85,14 @@ export function DivineParent({matrix, tarots}: { matrix: number[][], tarots: Tar
         let tarot: TarotEntity = tarots.find((tarot: TarotEntity) => tarot.index === positionCardId)
         return tarot;
     }
+
+    // function getExplain(rowIndex: number, columnIndex: number) {
+    //     let positionCardId = matrix[rowIndex][columnIndex]
+    //     if (positionCardId < 0) positionCardId = -1 * positionCardId
+    //     // @ts-ignore
+    //     let explain: TarotExplainEntity = tarotExplains.find((explain: TarotExplainEntity) => explain.tarot_index === positionCardId)
+    //     return explain;
+    // }
 
     return (
         <div
@@ -104,6 +116,36 @@ export function DivineParent({matrix, tarots}: { matrix: number[][], tarots: Tar
                     ))
                 }
             </div>
+
+                         <Modal
+                             isOpen={isOpen}
+                             onClose={onClose}
+                             hideCloseButton={true}
+                             className="bg-gray-900 text-white/90 "
+                         >
+                             <ModalContent>
+                                 {(onClose) => (
+                                     <>
+                                         <ModalBody>
+                                             111
+                                             {/*<SmallTarotItem id={checkId.toString()}/>*/}
+                                         </ModalBody>
+                                         {/*<ModalFooter className="justify-between">*/}
+                                         {/*    <Link href={`/tarot/tarot/item?id=${checkId}`} rel="noopener noreferrer"*/}
+                                         {/*          target="_blank">*/}
+                                         {/*        <Button color="secondary" onClick={onClose}>*/}
+                                         {/*            <p>Detail</p>*/}
+                                         {/*        </Button>*/}
+                                         {/*    </Link>*/}
+            
+                                         {/*    <Button color="primary" onPress={onClose}>*/}
+                                         {/*        <p>Close</p>*/}
+                                         {/*    </Button>*/}
+                                         {/*</ModalFooter>*/}
+                                     </>
+                                 )}
+                             </ModalContent>
+                         </Modal>
         </div>
 
     )
