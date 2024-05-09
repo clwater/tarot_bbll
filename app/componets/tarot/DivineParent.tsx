@@ -1,10 +1,11 @@
 'use client';
 import React from "react";
 
-import {Image, useDisclosure} from "@nextui-org/react";
+import {Button, Image, Link, ModalFooter, useDisclosure} from "@nextui-org/react";
 
 import cardBack from "@/app/assets/image/card_back.jpg";
 import {Modal, ModalBody, ModalContent} from "@nextui-org/modal";
+import {SmallTarotItem} from "@/app/componets/tarot/SmallTarotItem";
 
 
 export const DivineItem = ({matrixId, isOpen, isDown, tarot}: {
@@ -47,9 +48,17 @@ export const DivineItem = ({matrixId, isOpen, isDown, tarot}: {
 }
 
 
-export function DivineParent({matrix, tarots, tarotExplains}: { matrix: number[][], tarots: TarotEntity[], tarotExplains: TarotExplainEntity[]}) {
+export function DivineParent({matrix, tarots, tarotExplains}: {
+    matrix: number[][],
+    tarots: TarotEntity[],
+    tarotExplains: TarotExplainEntity[]
+}) {
 
     let _openMap = new Map()
+    let checkId = 0
+
+    let checkX = 0
+    let checkY = 0
 
     matrix.map((row: number[], rowIndex: number) => {
             row.map((element, columnIndex) => {
@@ -62,8 +71,12 @@ export function DivineParent({matrix, tarots, tarotExplains}: { matrix: number[]
     // tarot open state map
     const [open, setOpen] = React.useState(_openMap);
     const handleOpen = (x: number, y: number) => {
+        checkX = x
+        checkY = y
         if (open.get(x * 10 + y)) {
-             onOpen()
+            checkId = matrix[x][y]
+            if (checkId < 0) checkId = -1 * checkId
+            onOpen()
             return
         } else {
             setOpen(prevState => {
@@ -86,13 +99,13 @@ export function DivineParent({matrix, tarots, tarotExplains}: { matrix: number[]
         return tarot;
     }
 
-    // function getExplain(rowIndex: number, columnIndex: number) {
-    //     let positionCardId = matrix[rowIndex][columnIndex]
-    //     if (positionCardId < 0) positionCardId = -1 * positionCardId
-    //     // @ts-ignore
-    //     let explain: TarotExplainEntity = tarotExplains.find((explain: TarotExplainEntity) => explain.tarot_index === positionCardId)
-    //     return explain;
-    // }
+
+    function getExplains(chickX: number, chickY: number) {
+        let positionCardId = matrix[chickX][chickY]
+        if (positionCardId < 0) positionCardId = -1 * positionCardId
+        // @ts-ignore
+        return tarotExplains.filter((tarot: TarotExplainEntity) => tarot.tarot_index === positionCardId);
+    }
 
     return (
         <div
@@ -108,7 +121,7 @@ export function DivineParent({matrix, tarots, tarotExplains}: { matrix: number[]
                                      onClick={() => handleOpen(rowIndex, columnIndex)}
                                 >
                                     <DivineItem matrixId={element} isOpen={open.get(rowIndex * 10 + columnIndex)}
-                                                isDown={true} tarot={getTarot(rowIndex, columnIndex)}/>
+                                                isDown={element < 0} tarot={getTarot(rowIndex, columnIndex)}/>
                                 </div>
                             ))
                         }
@@ -117,35 +130,34 @@ export function DivineParent({matrix, tarots, tarotExplains}: { matrix: number[]
                 }
             </div>
 
-                         <Modal
-                             isOpen={isOpen}
-                             onClose={onClose}
-                             hideCloseButton={true}
-                             className="bg-gray-900 text-white/90 "
-                         >
-                             <ModalContent>
-                                 {(onClose) => (
-                                     <>
-                                         <ModalBody>
-                                             111
-                                             {/*<SmallTarotItem id={checkId.toString()}/>*/}
-                                         </ModalBody>
-                                         {/*<ModalFooter className="justify-between">*/}
-                                         {/*    <Link href={`/tarot/tarot/item?id=${checkId}`} rel="noopener noreferrer"*/}
-                                         {/*          target="_blank">*/}
-                                         {/*        <Button color="secondary" onClick={onClose}>*/}
-                                         {/*            <p>Detail</p>*/}
-                                         {/*        </Button>*/}
-                                         {/*    </Link>*/}
-            
-                                         {/*    <Button color="primary" onPress={onClose}>*/}
-                                         {/*        <p>Close</p>*/}
-                                         {/*    </Button>*/}
-                                         {/*</ModalFooter>*/}
-                                     </>
-                                 )}
-                             </ModalContent>
-                         </Modal>
+            <Modal
+                isOpen={isOpen}
+                onClose={onClose}
+                hideCloseButton={true}
+                className="bg-gray-900 text-white/90 "
+            >
+                <ModalContent>
+                    {(onClose) => (
+                        <>
+                            <ModalBody>
+                                <SmallTarotItem tarot={getTarot(checkX, checkY)} explains={getExplains(checkX, checkY)}/>
+                            </ModalBody>
+                            <ModalFooter className="justify-between">
+                                <Link href={`/tarot/tarot/item?id=${checkId}`} rel="noopener noreferrer"
+                                      target="_blank">
+                                    <Button color="secondary" onClick={onClose}>
+                                        <p>Detail</p>
+                                    </Button>
+                                </Link>
+
+                                <Button color="primary" onPress={onClose}>
+                                    <p>Close</p>
+                                </Button>
+                            </ModalFooter>
+                        </>
+                    )}
+                </ModalContent>
+            </Modal>
         </div>
 
     )

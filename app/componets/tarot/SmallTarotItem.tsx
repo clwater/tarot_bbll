@@ -1,43 +1,59 @@
 // import {useRouter, useSearchParams} from "next/navigation";
 import React from "react";
-import {Image, Textarea} from "@nextui-org/react";
+import {Accordion, AccordionItem, ScrollShadow} from "@nextui-org/react";
+import {Divider} from "@nextui-org/divider";
 
 
-let TarotManager = require('@/app/utils/TarotManager');
+const explainMap: { [key: number]: string } = {
+    0: "common",
+}
 
-export function SmallTarotItem({id = '1'}) {
 
-    const card = TarotManager.getTarotData(parseInt(id));
+export function SmallTarotItem({tarot, explains}: { tarot: TarotEntity, explains: TarotExplainEntity[] }) {
+
+    const explainsUp = explains.filter((explain) => explain.explain_type === 'up')
+    const explainsRev = explains.filter((explain) => explain.explain_type === 'rev')
+
 
     return (
-        <div
-            className="text-white"
-        >
-            <div className="">
-                <b>{card.name}</b>
+        <div>
+            <div className="px-8 py-8">
+                <b>{tarot.name}</b>
                 <br/>
 
-                <Textarea
-                    isReadOnly
-                    label={<b className="text-white">Mean up:</b>}
-                    variant="bordered"
-                    labelPlacement="outside"
-                    placeholder=""
-                    defaultValue={card.meaning_up}
-                    className="w-full"
-                />
+                <ScrollShadow className="w-[300px] h-[400px]">
+                    <div>
 
-                <Textarea
-                    isReadOnly
-                    label={<b className="text-white">Mean rev:</b>}
-                    variant="bordered"
-                    labelPlacement="outside"
-                    placeholder=""
-                    defaultValue={card.meaning_rev}
-                    className="w-full"
-                />
+                        <p className="text-2xl">Up</p>
+                        {
+                            explainsUp.map((explain, index) => (
+                                <div key={index}>
+                                    <p>{explainMap[parseInt(explain.type)]}</p>
+                                    <p>{explain.desc}</p>
+                                    {
+                                        index === explainsUp.length - 1 ? "" : <Divider className="my-1"/>
+                                    }
+                                </div>
+
+                            ))
+                        }
+                        <Divider className="my-2"/>
+                        <p className="text-2xl">Down</p>
+                        {
+                            explainsRev.map((explain, index) => (
+                                <div key={index}>
+                                    <p>{explainMap[parseInt(explain.type)]}</p>
+                                    <p>{explain.desc}</p>
+                                    {
+                                        index === explainsRev.length - 1 ? "" : <Divider className="my-1"/>
+                                    }
+                                </div>
+                            ))
+                        }
+                    </div>
+                </ScrollShadow>
             </div>
         </div>
-        
+
     )
 }
