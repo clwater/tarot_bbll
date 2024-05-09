@@ -6,8 +6,13 @@ import {Image} from "@nextui-org/react";
 import cardBack from "@/app/assets/image/card_back.jpg";
 
 
-export const DivineItem = ({matrixId, isOpen, isDown, tarot}: {matrixId:number, isOpen: boolean, isDown: boolean, tarot: TarotEntity }) => {
-    if (matrixId === 0){
+export const DivineItem = ({matrixId, isOpen, isDown, tarot}: {
+    matrixId: number,
+    isOpen: boolean,
+    isDown: boolean,
+    tarot: TarotEntity
+}) => {
+    if (matrixId === 0) {
         return <div></div>
     }
 
@@ -25,12 +30,10 @@ export const DivineItem = ({matrixId, isOpen, isDown, tarot}: {matrixId:number, 
                         // src={isOpen ? "https://clwater-halo.oss-cn-shanghai.aliyuncs.com/tarot/major-02.jpg" : cardBack.src}
                         src={isOpen ? tarot.image : cardBack.src}
                     />
-                    {isOpen ? "true": "false"}
                     <p className=" text-center max">
                         <small>
                             {
                                 isOpen ? `${tarot.name}` : ""
-                                // isOpen ? "name" : ""
                             }
                         </small>
                     </p>
@@ -63,8 +66,9 @@ export function DivineParent({matrix, tarots}: { matrix: number[][], tarots: Tar
             return
         } else {
             setOpen(prevState => {
-                prevState.set(x * 10 + y, true)
-                return prevState
+                const updatedState = new Map(prevState);
+                updatedState.set(x * 10 + y, true);
+                return updatedState;
             })
         }
     }
@@ -91,7 +95,8 @@ export function DivineParent({matrix, tarots}: { matrix: number[][], tarots: Tar
                                      className="flex-1"
                                      onClick={() => handleOpen(rowIndex, columnIndex)}
                                 >
-                                    <DivineItem matrixId={element} isOpen={open.get(rowIndex * 10 + columnIndex)} isDown={true} tarot={getTarot(rowIndex, columnIndex)}/>
+                                    <DivineItem matrixId={element} isOpen={open.get(rowIndex * 10 + columnIndex)}
+                                                isDown={true} tarot={getTarot(rowIndex, columnIndex)}/>
                                 </div>
                             ))
                         }
