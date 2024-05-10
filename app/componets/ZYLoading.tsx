@@ -4,19 +4,19 @@ import {GuaImage} from "@/app/componets/zy/GuaImage";
 let RandomUtils = require('@/app/utils/RandomUtils');
 
 function ZYLoadingItem(){
-    const [yaos, setYaos] = React.useState("111111");
+    // const [yaos, setYaos] = React.useState("111111");
+    //
+    // useEffect(() => {
+    //     function pollDOM() {
+    //         const guaImage = RandomUtils.getRandomGuas()
+    //         setYaos(guaImage)
+    //     }
+    //
+    //     const interval = setInterval(pollDOM, 1000);
+    //     return () => clearInterval(interval);
+    // }, [yaos])
 
-    useEffect(() => {
-        function pollDOM() {
-            const guaImage = RandomUtils.getRandomGuas()
-            setYaos(guaImage)
-        }
-
-        const interval = setInterval(pollDOM, 1000);
-        return () => clearInterval(interval);
-    }, [yaos])
-
-    return <GuaImage images={yaos} size={1}/>
+    return <GuaImage images={RandomUtils.getRandomGuas()} size={1}/>
 }
 
 export default function ZYLoading() {
