@@ -8,6 +8,7 @@ import {useSearchParams} from "next/navigation";
 import {DivineParentRequest} from "@/app/componets/tarot/DivineParentRequest";
 import {getGuas} from "@/app/utils/API";
 import TarotLoading from "@/app/componets/TarotLoading";
+import ZYLoading from "@/app/componets/ZYLoading";
 
 let API = require('@/app/utils/API');
 
@@ -27,7 +28,7 @@ export default function ZhouYi() {
         >
             <Header routeType={2}/>
 
-            <Suspense fallback={<TarotLoading/>}>
+            <Suspense fallback={<ZYLoading/>}>
                 <ZhouYiParent/>
             </Suspense>
 

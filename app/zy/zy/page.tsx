@@ -3,6 +3,7 @@ import React, {Suspense} from "react";
 import {Header} from "@/app/componets/Header";
 import ZYList from "@/app/componets/zy/ZYList";
 import TarotLoading from "@/app/componets/TarotLoading";
+import ZYLoading from "@/app/componets/ZYLoading";
 export default function ZhouYiListPage() {
 
 
@@ -12,7 +13,7 @@ export default function ZhouYiListPage() {
         >
             <Header routeType={2}/>
 
-            <Suspense fallback={<TarotLoading/>}>
+            <Suspense fallback={<ZYLoading/>}>
                 <ZYList/>
             </Suspense>
         </div>
