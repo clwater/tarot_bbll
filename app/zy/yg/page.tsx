@@ -2,17 +2,12 @@
 
 import React, {Suspense} from "react";
 import {Header} from "@/app/componets/Header";
-import {YaoImage} from "@/app/componets/zy/YaoImage";
 import YGDetails from "@/app/componets/zy/YGDetails";
-import {useSearchParams} from "next/navigation";
-import {DivineParentRequest} from "@/app/componets/tarot/DivineParentRequest";
-import {getGuas} from "@/app/utils/API";
-import TarotLoading from "@/app/componets/TarotLoading";
 import ZYLoading from "@/app/componets/ZYLoading";
 
 let API = require('@/app/utils/API');
 
-export async function ZhouYiParent() {
+async function ZhouYiParent() {
     const guas = await API.getGuas()
 
     return (<YGDetails guas={guas}/>)
