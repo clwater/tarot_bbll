@@ -11,8 +11,8 @@ const explainMap: { [key: number]: string } = {
 
 export function SmallTarotItem({tarot, explains}: { tarot: TarotEntity, explains: TarotExplainEntity[] }) {
 
-    const explainsUp = explains.filter((explain) => explain.explain_type === 'up')
-    const explainsRev = explains.filter((explain) => explain.explain_type === 'rev')
+    const explainsUp: TarotExplainEntity[] = explains.filter((explain) => explain.explain_type === 'up')
+    const explainsRev: TarotExplainEntity[] = explains.filter((explain) => explain.explain_type === 'rev')
 
 
     return (
@@ -54,6 +54,5 @@ export function SmallTarotItem({tarot, explains}: { tarot: TarotEntity, explains
                 </ScrollShadow>
             </div>
         </div>
-
     )
 }

@@ -57,8 +57,8 @@ export function DivineParent({matrix, tarots, tarotExplains}: {
     let _openMap = new Map()
     let checkId = 0
 
-    let checkX = 0
-    let checkY = 0
+    let [checkX, setCheckX] = React.useState(0)
+    let [checkY, setCheckY] = React.useState(0)
 
     matrix.map((row: number[], rowIndex: number) => {
             row.map((element, columnIndex) => {
@@ -70,9 +70,11 @@ export function DivineParent({matrix, tarots, tarotExplains}: {
 
     // tarot open state map
     const [open, setOpen] = React.useState(_openMap);
+
     const handleOpen = (x: number, y: number) => {
-        checkX = x
-        checkY = y
+        setCheckX(x)
+        setCheckY(y)
+
         if (open.get(x * 10 + y)) {
             checkId = matrix[x][y]
             if (checkId < 0) checkId = -1 * checkId
@@ -98,7 +100,6 @@ export function DivineParent({matrix, tarots, tarotExplains}: {
         let tarot: TarotEntity = tarots.find((tarot: TarotEntity) => tarot.index === positionCardId)
         return tarot;
     }
-
 
     function getExplains(chickX: number, chickY: number) {
         let positionCardId = matrix[chickX][chickY]
@@ -143,7 +144,7 @@ export function DivineParent({matrix, tarots, tarotExplains}: {
                                 <SmallTarotItem tarot={getTarot(checkX, checkY)} explains={getExplains(checkX, checkY)}/>
                             </ModalBody>
                             <ModalFooter className="justify-between">
-                                <Link href={`/tarot/tarot/item?id=${checkId}`} rel="noopener noreferrer"
+                                <Link href={`/tarot/tarot/item?id=${getTarot(checkX, checkY).index}`} rel="noopener noreferrer"
                                       target="_blank">
                                     <Button color="secondary" onClick={onClose}>
                                         <p>Detail</p>
