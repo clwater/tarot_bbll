@@ -4,7 +4,7 @@ import {Header} from "@/app/componets/Header";
 import React, {Suspense} from "react";
 import {useSearchParams} from "next/navigation";
 import {DivineParent} from "@/app/componets/tarot/DivineParent";
-import Loading from "@/app/componets/loading";
+import TarotLoading from "@/app/componets/TarotLoading";
 import {DivineParentRequest} from "@/app/componets/tarot/DivineParentRequest";
 
 // https://nextjs.org/docs/pages/building-your-application/data-fetching/get-server-side-props
@@ -30,7 +30,7 @@ export default function Divine() {
     return (
         <div>
             <Header routeType={1}/>
-            <Suspense fallback={<Loading/>}>
+            <Suspense fallback={<TarotLoading/>}>
                 <Item/>
             </Suspense>
 

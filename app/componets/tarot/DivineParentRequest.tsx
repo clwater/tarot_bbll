@@ -5,7 +5,7 @@ import {Button, Image, Link} from "@nextui-org/react";
 
 import {useRouter} from "next/navigation";
 import cardBack from "@/app/assets/image/card_back.jpg";
-import Loading from "@/app/componets/loading";
+import TarotLoading from "@/app/componets/TarotLoading";
 import {DivineParent} from "@/app/componets/tarot/DivineParent";
 
 

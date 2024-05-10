@@ -4,7 +4,7 @@ import React, {Suspense} from "react";
 import {Header} from "@/app/componets/Header";
 import ZYDetails from "@/app/componets/zy/ZYDeatils";
 import {useSearchParams} from "next/navigation";
-import Loading from "@/app/componets/loading";
+import TarotLoading from "@/app/componets/TarotLoading";
 
 function Item() {
     const searchParams = useSearchParams();
@@ -25,7 +25,7 @@ export default function GuaParent() {
         >
             <Header routeType={2}/>
 
-            <Suspense fallback={<Loading/>}>
+            <Suspense fallback={<TarotLoading/>}>
                 <Item/>
             </Suspense>
         </div>
