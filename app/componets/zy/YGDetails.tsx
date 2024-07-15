@@ -8,10 +8,14 @@ import {Button, Link} from "@nextui-org/react";
 let API = require('@/app/utils/API');
 
 
-export default function YGDetails({guas}: { guas: GuaSimpleEntity[] }) {
-    const [yaos, setYaos] = React.useState([true, true, true, true, true, true]);
-    const [checkYao, setCheckYao] = React.useState("111111");
-    const [gua, setGua] = React.useState(guas[0]);
+export default function YGDetails({guas, randomIndex}: { guas: GuaSimpleEntity[], randomIndex: number }) {
+    const c = guas[randomIndex];
+
+
+    // const [yaos, setYaos] = React.useState([true, true, true, true, true, true]);
+    const [yaos, setYaos] = React.useState([c.image[0] === "1", c.image[1] === "1", c.image[2] === "1", c.image[3] === "1", c.image[4] === "1", c.image[5] === "1"]);
+    const [checkYao, setCheckYao] = React.useState(c.image);
+    const [gua, setGua] = React.useState(c);
 
     const guasMap:Map<string, number> = new Map<string, number>();
 
