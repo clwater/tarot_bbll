@@ -9,8 +9,10 @@ let API = require('@/app/utils/API');
 
 async function ZhouYiParent() {
     const guas = await API.getGuas()
+    const randomIndex = Math.floor(Math.random() * guas.length)
 
-    return (<YGDetails guas={guas}/>)
+    // return (<YGDetails guas={guas} randomIndex={randomIndex}/>)
+    return (<YGDetails guas={guas} randomIndex={randomIndex}/>)
 }
 
 
