@@ -17,6 +17,15 @@ export const supabase = createClient(
 );
 
 
+export async function getQuestion(question: string) {
+    const {data, error} = await supabase.functions.invoke('ai', {
+        body: {question: question}
+    })
+
+    console.log(data)
+    return !error;
+}
+
 
 export async function getGuas() {
     const {data, error}: { data: GuaSimpleEntity[] | null, error: any } = await supabase.from('zy')
