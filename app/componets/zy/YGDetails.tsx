@@ -78,6 +78,9 @@ export default function YGDetails({guas, randomIndex}: { guas: GuaSimpleEntity[]
                     <Link href={`/zy/zy/item?id=${gua.index}`} rel="noopener noreferrer" className="w-full">
                         <Button className="w-full">详情</Button>
                     </Link>
+                    <Link href={`/ask?name=${gua.name}`} rel="noopener noreferrer" className="w-full pt-4">
+                        <Button className="w-full">答疑解惑~</Button>
+                    </Link>
                 </div>
             </div>
 

@@ -1,7 +1,7 @@
 'use client';
 
 import React, {Suspense} from "react";
-import {Accordion, AccordionItem} from "@nextui-org/react";
+import {Accordion, AccordionItem, Button, Link} from "@nextui-org/react";
 import {GuaImage} from "@/app/componets/zy/GuaImage";
 import {Divider} from "@nextui-org/divider";
 import {YaoImage} from "@/app/componets/zy/YaoImage";
@@ -74,6 +74,12 @@ export default async function ZYDetails(props: { guaIndex: string }) {
 
             <Divider className="my-2"/>
 
+            <Link href={`/ask?name=${getGua.name}`} rel="noopener noreferrer" className="w-full pt-4">
+                <Button className="w-full">答疑解惑~</Button>
+            </Link>
+
+            <Divider className="my-2"/>
+
             <Accordion defaultExpandedKeys={"1"}>
                 <AccordionItem
                     key="1"
@@ -93,6 +99,7 @@ export default async function ZYDetails(props: { guaIndex: string }) {
                         ))
                     }
                     <Divider className="my-2"/>
+
 
                     <p className="text-2xl">指示</p>
                     {
