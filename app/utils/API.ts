@@ -23,7 +23,7 @@ export async function getQuestion(question: string) {
     })
 
     console.log(data)
-    return !error;
+    return data.data;
 }
 
 
