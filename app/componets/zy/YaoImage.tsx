@@ -1,5 +1,4 @@
 import React from "react";
-import {Image, Link} from "@nextui-org/react";
 
 export const YaoImage = (props: { yang: boolean, index: number, size: number }) => {
     // const mb =  "mb-"  + (props.h * 1.5);
